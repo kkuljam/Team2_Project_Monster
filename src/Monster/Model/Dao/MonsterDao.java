@@ -1,4 +1,4 @@
 package Monster.Model.Dao;
 
-public class MonsterDto {
+public class MonsterDao {
 }
