@@ -11,8 +11,14 @@ public class MemberController {
 
     //메소드
     //회원가입
-    public boolean signup(MemberDto memberDto){
-        boolean result = MemberDao.getInstance().signup(memberDto);
+    public int signup(MemberDto memberDto){
+        int result = 0;
+
+        if(MemberDao.getInstance().idCheck(memberDto.getMid())){
+            return 1;
+        }
+
+        result = MemberDao.getInstance().signup(memberDto);
         return result;
     }
 }

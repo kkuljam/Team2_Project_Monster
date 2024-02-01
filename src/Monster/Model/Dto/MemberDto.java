@@ -1,5 +1,7 @@
 package Monster.Model.Dto;
 
+import Monster.Model.Dao.Dao;
+
 public class MemberDto {
     //1. 필드
     private int mno;

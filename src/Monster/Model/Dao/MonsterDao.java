@@ -2,7 +2,7 @@ package Monster.Model.Dao;
 
 import Monster.Model.Dto.MonsterListDto;
 
-public class MonsterDao {
+public class MonsterDao extends Dao {
     //싱글톤
     private MonsterDao(){};// 생성자 : 객체 생성시 초기화 담당
     private static MonsterDao monsterDao=new MonsterDao();

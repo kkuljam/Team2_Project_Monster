@@ -31,7 +31,13 @@ public class MemberView {
         MemberDto memberDto = new MemberDto(0,id,pw,phone,name);
 
         //컨트롤러에 전달 후 받기
-        boolean result = MemberController.getInstance().signup(memberDto);
+        int result = MemberController.getInstance().signup(memberDto);
+
+        if(result==1){
+            System.out.println("회원가입 성공");
+        } else if (result == 2) {
+            System.out.println("아이디 중복");
+        }
 
     }
 
