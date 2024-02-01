@@ -1,7 +1,9 @@
 package Monster.View;
 
 import Monster.Controller.AdminController;
+import Monster.Model.Dto.MemberDto;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminView {
@@ -11,10 +13,11 @@ public class AdminView {
 
     public static  AdminView getInstance(){return adminView;}
 
-    Scanner scanner =new Scanner(System.in);
+     Scanner scanner =new Scanner(System.in);
 
 
     // 0. 관리자 로그인 성공시 출력
+
     public void AdminRun(){
         while (true){
             System.out.println("==============관리자 모드=============");
@@ -40,6 +43,13 @@ public class AdminView {
     //회원관리 화면
     public void MemberManagement(){
         System.out.println("===========회원 관리==========");
-        //for (int i=0;i< AdminController.)
+        ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
+        for (int i=0;i<memberDtos.size();i++){
+            System.out.print(memberDtos.get(i).getMno());
+            System.out.print(memberDtos.get(i).getMid());
+            System.out.print(memberDtos.get(i).getMpw());
+            System.out.print(memberDtos.get(i).getMphone());
+            System.out.println(memberDtos.get(i).getMname());
+        }
     }
 }
