@@ -21,7 +21,7 @@ public class Dao {
             Class.forName("com.mysql.cj.jdbc.Driver");
             // 2. 연동된 결과의 객체를 Connection 인터페이스에 대입한다
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/java",
+                    "jdbc:mysql://localhost:3306/monster",
                     "root",
                     "1234"
             );
