@@ -49,7 +49,8 @@ public class MonsterDao extends Dao{
     //================================================================
 
     // 몬스터리스트 뽑아오기
-    public int monsterList(MonsterListDto monsterListDto){
+    public ArrayList<MonsterListDto> monsterList() {
+        ArrayList<MonsterListDto> result = new ArrayList<>();
         try {
 
             // 1. SQL 작성
@@ -60,11 +61,21 @@ public class MonsterDao extends Dao{
 
             // 3. SQL 실행한다
             rs = ps.executeQuery();
+            while (rs.next()) {
+                MonsterListDto monsterListDto = new MonsterListDto();
+                monsterListDto.setLino(rs.getInt("lino"));
+                monsterListDto.setStepno(rs.getInt("stepno"));
+                monsterListDto.setImg(rs.getString("img"));
+                monsterListDto.setIq(rs.getInt("iq"));
+                monsterListDto.setStrong(rs.getInt("strong"));
+                result.add(monsterListDto);
+            }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-        return 0;
+
+        return result;
     }
 }
