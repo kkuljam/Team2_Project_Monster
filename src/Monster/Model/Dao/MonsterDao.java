@@ -2,7 +2,9 @@ package Monster.Model.Dao;
 
 import Monster.Model.Dto.MonsterListDto;
 
-public class MonsterDao {
+import java.util.ArrayList;
+
+public class MonsterDao extends Dao{
     //싱글톤
     private MonsterDao(){};// 생성자 : 객체 생성시 초기화 담당
     private static MonsterDao monsterDao=new MonsterDao();
@@ -28,7 +30,8 @@ public class MonsterDao {
     }*/
 
     // 몬스터리스트 뽑아오기
-    public int monsterList(MonsterListDto monsterListDto){
+    public ArrayList<MonsterListDto> monsterList() {
+        ArrayList<MonsterListDto> result = new ArrayList<>();
         try {
 
             // 1. SQL 작성
@@ -39,11 +42,21 @@ public class MonsterDao {
 
             // 3. SQL 실행한다
             rs = ps.executeQuery();
+            while (rs.next()) {
+                MonsterListDto monsterListDto = new MonsterListDto();
+                monsterListDto.setLino(rs.getInt("lino"));
+                monsterListDto.setStepno(rs.getInt("stepno"));
+                monsterListDto.setImg(rs.getString("img"));
+                monsterListDto.setIq(rs.getInt("iq"));
+                monsterListDto.setStrong(rs.getInt("strong"));
+                result.add(monsterListDto);
+            }
 
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-        return 0;
+
+        return result;
     }
 }
