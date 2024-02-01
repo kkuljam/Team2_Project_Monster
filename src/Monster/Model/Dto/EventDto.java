@@ -3,10 +3,10 @@ package Monster.Model.Dto;
 public class EventDto {
 
     //1. 필드
-    private int eno;
-    private String eimg;
-    private int statUp;
-    private int statDown;
+    private int eno;        //이벤트넘버
+    private String eimg;    //이벤트이미지
+    private int statUp;     //스탭업
+    private int statDown;   //스탭다운
 
     //2.생성자
     EventDto(){}
