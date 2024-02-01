@@ -53,5 +53,16 @@ public class AdminView {
             System.out.print(memberDtos.get(i).getMphone()+"\t");
             System.out.println(memberDtos.get(i).getMname());
         }
-    }
+        System.out.println("회원번호입력:"); int ch=scanner.nextInt();
+        for(int i=0; i<memberDtos.size();i++){
+            if(ch==memberDtos.get(i).getMno()) {
+                System.out.print(memberDtos.get(i).getMno()+"\t");
+                System.out.print(memberDtos.get(i).getMid()+"\t");
+                System.out.print(memberDtos.get(i).getMpw()+"\t");
+                System.out.print(memberDtos.get(i).getMphone()+"\t");
+                System.out.println(memberDtos.get(i).getMname());
+
+            }
+        }
+   }
 }
