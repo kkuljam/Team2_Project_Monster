@@ -84,4 +84,17 @@ public class MonsterDto {
     public void setStrong(int strong) {
         this.strong = strong;
     }
+
+    @Override
+    public String toString() {
+        return "MonsterDto{" +
+                "mno=" + mno +
+                ", nickname='" + nickname + '\'' +
+                ", lino=" + lino +
+                ", hp=" + hp +
+                ", stress=" + stress +
+                ", iq=" + iq +
+                ", strong=" + strong +
+                '}';
+    }
 }
