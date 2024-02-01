@@ -9,10 +9,14 @@ public class MonsterController {
     public static MonsterController getInstance(){return monsterController;}
 
 
-   /* public boolean monsterExistence(int mno){
+    public boolean monsterExistence(int mno){// 몬스터 존재 확인 메소드
      boolean result=true;
      result=MonsterDao.getInstance().monsterExistence(mno);
      return result;
-    }*/
+    }
+    //========= 몬스터 랜덤
+    public void monsterRandom(String nM){
+
+    }
 }
 

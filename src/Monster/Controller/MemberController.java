@@ -21,4 +21,5 @@ public class MemberController {
         result = MemberDao.getInstance().signup(memberDto);
         return result;
     }
+
 }
