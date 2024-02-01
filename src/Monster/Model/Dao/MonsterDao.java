@@ -17,7 +17,7 @@ public class MonsterDao extends Dao{
             String sql = "slesct mno form monster where mno = ?";
             //1. SQL 기재
             ps = conn.prepareStatement(sql);
-            ps.setString(1, mno); // sql문법내 첫번째 ?에 mno 변수 값 대입
+            ps.setInt(1, mno); // sql문법내 첫번째 ?에 mno 변수 값 대입
             //1. SQL 실행
             rs = ps.executeQuery(); //질의/검색(select) 결과를 rs 인터페이스에 대입한다
             //1. SQL 처리
