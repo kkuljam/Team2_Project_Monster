@@ -3,6 +3,7 @@ package Monster.Model.Dao;
 import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MonsterDao extends Dao{
     //싱글톤
@@ -30,21 +31,38 @@ public class MonsterDao extends Dao{
         //5.함수종료
         return true; // 몬스터 없음
     }
-    public void monsterRandom(String nM){
-        int a=1;
+    public boolean monsterRandom(String nM, int mno){
         try {
-            String sql="select stepno from monsterlist where stepno=1";
+            String sql="select count from monsterlist where stapno=1";
             ps=conn.prepareStatement(sql);
             rs= ps.executeQuery();
-            if(rs.next()){
+            int a=rs.getRow();
 
+            Random random=new Random(); // 난수 객체 생성
+            int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤
+            if(mRandom==0){
+                mRandom+=1;
+            }else {
+                mRandom=mRandom*3;
             }
+
+            sql = "insert into monster(mno,lino, nickname)values(?,?,?)";
+            ps = conn.prepareStatement(sql);
+            // ? 매개변수 대입
+            ps.setInt(1,mno); //기재된 SQL내 첫번째 ?에 값 대입
+            ps.setInt(2, mRandom); //기재된 SQL내 두번째 ?에 값 대입
+            ps.setString(3,nM ); //기재된 SQL내 세
+
+            int count = ps.executeUpdate(); //executeUpdate() 기재된sql 실행하고 insert된 레코드 개수 반환
+            if (count == 1) {
+                return true;
+            }// 만약에 insert 처리된 레코드가 1개면 회원가입 성공
+
+
         }catch (Exception e){
-            System.out.println(e+"몬스터 난수 오류");
+            System.out.println(e+"생성");
         }
-
-        ArrayList<MonsterListDto>monsterListDtos=new ArrayList<>();
-
+        return false;
     }
     //================================================================
 

@@ -18,14 +18,11 @@ public class MonsterController {
     }
 
 
-
     public ArrayList<MonsterListDto> monsterList(){
         ArrayList<MonsterListDto> result = new ArrayList<>();
         result = MonsterDao.getInstance().monsterList();
         return result;
     }
-
-
 
     public boolean monsterExistence(int mno){// 몬스터 존재 확인 메소드
      boolean result=true;
@@ -33,7 +30,8 @@ public class MonsterController {
      return result;
     }
     //========= 몬스터 랜덤
-    public void monsterRandom(String nM){
+    public void monsterRandom(String nM,int mno){
+
 
     }
 }

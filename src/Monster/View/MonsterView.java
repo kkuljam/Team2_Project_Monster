@@ -10,7 +10,7 @@ public class MonsterView {
     public static MonsterView getInstance(){return monsterView;}
     Scanner scanner=new Scanner(System.in);
 
-    public void monsterRandom(String nM){// 몬스터 랜덤 메소드+닉네임 넣어주기
+    public void monsterRandom(String nM,int mno){// 몬스터 랜덤 메소드+닉네임 넣어주기
 
 
     }
