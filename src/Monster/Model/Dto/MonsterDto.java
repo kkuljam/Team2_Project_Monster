@@ -85,3 +85,5 @@ public class MonsterDto {
         this.strong = strong;
     }
 }
+
+
