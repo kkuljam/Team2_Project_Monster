@@ -25,8 +25,19 @@ public class MonsterDto {
         this.strong = strong;
     }
 
-
-    // 3. 메소드
+    @Override
+    public String toString() {
+        return "MonsterDto{" +
+                "mno=" + mno +
+                ", nickname='" + nickname + '\'' +
+                ", lino=" + lino +
+                ", hp=" + hp +
+                ", stress=" + stress +
+                ", iq=" + iq +
+                ", strong=" + strong +
+                '}';
+    }
+// 3. 메소드
 
 
     public int getMno() {
