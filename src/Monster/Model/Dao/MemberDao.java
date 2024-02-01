@@ -63,4 +63,5 @@ public class MemberDao extends Dao{
         }
         return false; //중복없음
     }
+
 }

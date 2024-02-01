@@ -17,9 +17,13 @@ public class MemberController {
         if(MemberDao.getInstance().idCheck(memberDto.getMid())){
             return 1;
         }
-
         result = MemberDao.getInstance().signup(memberDto);
         return result;
+    }
+
+    public int login(MemberDto memberDto){
+
+        return 0;
     }
 
 }

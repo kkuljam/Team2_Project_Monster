@@ -33,16 +33,39 @@ public class MemberView {
         //컨트롤러에 전달 후 받기
         int result = MemberController.getInstance().signup(memberDto);
 
-        if(result==1){
+        if(result==0){
             System.out.println("회원가입 성공");
-        } else if (result == 2) {
+        } else if (result == 1) {
             System.out.println("아이디 중복");
         }
+
+    }//m e
+
+    //로그인
+    public void login(){
+        System.out.println("============로그인============");
+
+        //입력받기
+        System.out.print("아이디 : ");
+        String id = scanner.next();
+        System.out.print("비밀번호 : ");
+        String pw = scanner.next();
+
+        //객체화
+        MemberDto memberDto = new MemberDto();
+        memberDto.setMid(id);
+        memberDto.setMpw(pw);
+
+        //컨트롤에게 전달 후 받기
+        int result = MemberController.getInstance().login(memberDto);
+
+        System.out.println(result);
+
+
 
     }
 
 
 
 
-
-}
+}//c e

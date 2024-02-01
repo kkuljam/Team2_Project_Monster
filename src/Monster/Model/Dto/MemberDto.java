@@ -22,6 +22,7 @@ public class MemberDto {
         this.mname = mname;
     }
 
+
     @Override
     public String toString() {
         return "MemberDto{" +
