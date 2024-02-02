@@ -25,7 +25,7 @@ public class MainView {
             } else if (ch == 2) {
                 MemberView.getInstance().login();
             } else {
-                System.out.println("입력이 잘못되었습니다.");
+                System.out.println("<알림> 입력이 잘못되었습니다.");
             }
         }//w e
     }//m e

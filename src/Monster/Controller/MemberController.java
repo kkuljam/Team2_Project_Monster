@@ -21,9 +21,27 @@ public class MemberController {
         return result;
     }
 
+    //로그인
     public int login(MemberDto memberDto){
+        int result = 0;
 
-        return 0;
+        int result1 = MemberDao.getInstance().loginId(memberDto);
+        int result2 = MemberDao.getInstance().loginPw(memberDto);
+        //System.out.println(result2);
+
+
+        if(result1==1&&result2==1){
+            result = 1; //로그인 성공
+        }else if (result1 == 2){
+            result = 2; //아이디틀림
+        } else if (result2==2) {
+            result = 3; //비밀번호 틀림
+        }
+
+        return result;
+
     }
+
+
 
 }
