@@ -4,21 +4,37 @@ public class EventDto {
 
     //1. 필드
     private int eno;        //이벤트넘버
+    private String ename;   //이벤트 이름
     private String eimg;    //이벤트이미지
     private int statUp;     //스탭업
     private int statDown;   //스탭다운
 
     //2.생성자
-    EventDto(){}
+    public EventDto(){}
 
-    public EventDto(int eno, String eimg, int statUp, int statDown) {
+    public EventDto(int eno, String ename, String eimg, int statUp, int statDown) {
         this.eno = eno;
+        this.ename = ename;
         this.eimg = eimg;
         this.statUp = statUp;
         this.statDown = statDown;
     }
 
+    public EventDto(int eno, String ename) {
+        this.eno = eno;
+        this.ename = ename;
+    }
+
     //3.메소드
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
     public int getEno() {
         return eno;
     }
@@ -55,6 +71,7 @@ public class EventDto {
     public String toString() {
         return "EventDto{" +
                 "eno=" + eno +
+                ", ename='" + ename + '\'' +
                 ", eimg='" + eimg + '\'' +
                 ", statUp=" + statUp +
                 ", statDown=" + statDown +

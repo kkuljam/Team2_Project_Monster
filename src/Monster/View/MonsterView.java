@@ -1,7 +1,9 @@
 package Monster.View;
 
 import Monster.Controller.MonsterController;
+import Monster.Model.Dto.EventDto;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MonsterView {
@@ -10,15 +12,12 @@ public class MonsterView {
     public static MonsterView getInstance(){return monsterView;}
     Scanner scanner=new Scanner(System.in);
 
-    public void monsterRandom(String nM){// 몬스터 랜덤 메소드+닉네임 넣어주기
-
-
-    }
-
-    public void run(){
-        //몬스터 보유 여부
-        int mno=1;// 회원번호 불러와야함
-        boolean result= MonsterController.getInstance().monsterExistence(mno);
+    public static void run(){
+        int mno=3;// 회원번호 불러와야함
+        boolean result= MonsterController.getInstance().monsterExistence(mno); //몬스터 보유 여부 메소드
+        if(result){
+            result=false;
+        }
         if(result){
             Scanner scanner=new Scanner(System.in);
             System.out.println("\n" +
@@ -49,27 +48,46 @@ public class MonsterView {
             scanner.nextLine();     System.out.print("5");
 
             // 이름 보내면서 난수 생성하고 그걸로 몬스터 정해주기
+            boolean go=MonsterController.getInstance().monsterRandom(nickName,mno);
+            if(go){
+                System.out.println(nickName+"이(가) 깨어나고 있습니다.");
+                try {
+                    Thread.sleep(5);
+                } catch (InterruptedException e) {
+                    System.out.println(e);
+                }
+            }
 
         }
 
         while (true){
-            System.out.println("");
-            //게이지 띄워줄 메소드
+            Scanner scanner=new Scanner(System.in);
 
-            //기능 선택지 메소드
-            System.out.print("선택>");
+            //캐릭터+닉네임+게이지 화면 띄워야함
+
+            System.out.println("0. 로그아웃");
+
+            //이벤트 선택지 출력할 메소드
+            ArrayList<EventDto>eventDtos=MonsterController.getInstance().eventPrint(new EventDto());
+            for(int i=0; i< eventDtos.size();i++){
+                System.out.print(eventDtos.get(i).getEno()+"."+eventDtos.get(i).getEname()+"\t");
+            }
+
+            System.out.print("\n선택>");
             int ch=scanner.nextInt();
 
-            if(ch==1){
+            if(ch==0){
+                // 로그아웃 메소드
+            } else if (ch<= eventDtos.size()) {
 
-            } else if (ch==2) {
-
-            } else if (ch==3) {
-
+                // 기능 메소드
             }
         }
     }
 
+    public static void main(String[] args) {
+        run();
+    }
 
 
 
