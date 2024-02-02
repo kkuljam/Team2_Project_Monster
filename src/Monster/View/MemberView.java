@@ -33,11 +33,54 @@ public class MemberView {
         //컨트롤러에 전달 후 받기
         int result = MemberController.getInstance().signup(memberDto);
 
-        if(result==1){
-            System.out.println("회원가입 성공");
-        } else if (result == 2) {
-            System.out.println("아이디 중복");
+        if(result==0){
+            System.out.println("<알림> 회원가입 되었습니다.");
+            MainView.getInstance().mainView();
+        } else if (result == 1) {
+            System.out.println("<알림> 아이디가 중복되었습니다.");
         }
+
+    }//m e
+
+    //로그인
+    public void login(){
+        System.out.println("============로그인============");
+
+        //입력받기
+        System.out.print("아이디 : ");
+        String id = scanner.next();
+        System.out.print("비밀번호 : ");
+        String pw = scanner.next();
+
+        //객체화
+        MemberDto memberDto = new MemberDto();
+        memberDto.setMid(id);
+        memberDto.setMpw(pw);
+
+        //컨트롤에게 전달 후 받기
+        int result = MemberController.getInstance().login(memberDto);
+
+        if(result == 1){
+            System.out.println("============몬스터키우기============");
+            System.out.println("1.플레이 2.설정");
+            int ch = scanner.nextInt();
+            if (ch == 1){
+                System.out.println("플레이실행");
+            } else if (ch==2) {
+                System.out.println("설정실행");
+            } else {
+                System.out.println("<알림> 입력이 잘못되었습니다.");
+            }
+        }else if(result == 2){
+            System.out.println("<알림> 없는 아이디 입니다.");
+        } else if (result==3) {
+            System.out.println("<알림> 잘못된 비밀번호 입니다.");
+        }else {
+            System.out.println("<시스템오류> 관리자에게 문의하세요");
+        }
+
+
+
 
     }
 
@@ -45,4 +88,5 @@ public class MemberView {
 
 
 
-}
+
+}//c e
