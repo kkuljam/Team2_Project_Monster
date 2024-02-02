@@ -21,5 +21,12 @@ public class AdminController {
         return result;
     }
 
+    public boolean  memberChange(MemberDto memberDto){
+        boolean result =false;
+        result=AdminDao.getInstance().memberChange(memberDto);
+
+        return result;
+    }
+
 
 }

@@ -34,4 +34,22 @@ public class AdminDao extends Dao {
         }
     return null;
     }
+    public boolean memberChange(MemberDto memberDto){
+        try {
+            String sql= "update member set mid= ? ,mpw= ?,mphone= ?,mname= ? where mid= ?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,memberDto.getMid());
+            ps.setString(2,memberDto.getMid());
+            ps.setString(3,memberDto.getMid());
+            ps.setString(4,memberDto.getMid());
+            ps.setInt(5,memberDto.getMno());
+
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return true;
+    }
+
+
 }
