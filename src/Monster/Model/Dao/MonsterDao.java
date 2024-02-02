@@ -1,5 +1,6 @@
 package Monster.Model.Dao;
 
+import Monster.Controller.MonsterController;
 import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.EventDto;
 
@@ -18,7 +19,7 @@ public class MonsterDao extends Dao{
     public boolean monsterExistence(int mno){// 몬스터 보유 여부 확인
         try {
             //1. SQL 작성
-            String sql = "select mno form monster where mno = ?";
+            String sql = "select mno from monster where mno = ?";
             //1. SQL 기재
             ps = conn.prepareStatement(sql);
             ps.setInt(1, mno); // sql문법내 첫번째 ?에 mno 변수 값 대입
@@ -27,13 +28,13 @@ public class MonsterDao extends Dao{
             //1. SQL 처리
             if (rs.next()) {  //rs.next() : 검색 결과 테이블에서 다음레코드 이동
                 System.out.println("몬스터 있음");
-                return true; //몬스터 있음
+                return false; //몬스터 있음
             }
         }catch (Exception e){
-           // System.out.println(e+"존재여부");
+            System.out.println(e+"존재여부");
         }
         //5.함수종료
-        return false; // 몬스터 없음
+        return true; // 몬스터 없음
     }
     public boolean monsterRandom(String nM, int mno){// 몬스터 랜덤 생성 및 DB에 저장
         try {
@@ -99,6 +100,7 @@ public class MonsterDao extends Dao{
         return null;
     }
     public String eventExecution(int ch){
+        String[]stat=MonsterController.getInstance().stat;
         return null;
 
     }

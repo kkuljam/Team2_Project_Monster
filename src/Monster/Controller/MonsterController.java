@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 
 public class MonsterController {
+    public String[]stat={"hp","stress","iq","strong"};
     private MonsterController() {
     }
-
     ;
     private static MonsterController monsterController = new MonsterController();
 
