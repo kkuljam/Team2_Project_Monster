@@ -1,5 +1,6 @@
 package Monster.Model.Dao;
 
+import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
@@ -48,34 +49,101 @@ public class MonsterDao extends Dao{
     }
     //================================================================
 
-    // 몬스터리스트 뽑아오기
-    public ArrayList<MonsterListDto> monsterList() {
-        ArrayList<MonsterListDto> result = new ArrayList<>();
-        try {
+    //===============================김건우===============================
 
-            // 1. SQL 작성
-            String sql = "select * from monsterlist";
 
-            // 2. SQL 기재한다
-            ps = conn.prepareStatement(sql);
 
-            // 3. SQL 실행한다
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                MonsterListDto monsterListDto = new MonsterListDto();
-                monsterListDto.setLino(rs.getInt("lino"));
-                monsterListDto.setStepno(rs.getInt("stepno"));
-                monsterListDto.setImg(rs.getString("img"));
-                monsterListDto.setIq(rs.getInt("iq"));
-                monsterListDto.setStrong(rs.getInt("strong"));
-                result.add(monsterListDto);
+        // 몬스터리스트 불러오기
+        ArrayList<MonsterListDto> mlist = new ArrayList<>();
+
+        public ArrayList<MonsterListDto> monsterList () {
+
+            try {
+
+                // 1. SQL 작성
+                String sql = "select * from monsterlist";
+
+                // 2. SQL 기재한다
+                ps = conn.prepareStatement(sql);
+
+                // 3. SQL 실행한다
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    MonsterListDto monsterListDto = new MonsterListDto();
+                    monsterListDto.setLino(rs.getInt("lino"));
+                    monsterListDto.setStepno(rs.getInt("stepno"));
+                    monsterListDto.setImg(rs.getString("img"));
+                    monsterListDto.setIq(rs.getInt("iq"));
+                    monsterListDto.setStrong(rs.getInt("strong"));
+                    mlist.add(monsterListDto);
+                }
+
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return mlist;
+        }
+        ArrayList<MonsterDto> mstat = new ArrayList<>();
+
+        // 몬스터 테이블 불러오기
+        public ArrayList<MonsterDto> monsterDtos () {
+
+
+            try {
+
+                // 1. SQL 작성
+                String sql = "select * from monster";
+
+                // 2. SQL 기재한다
+                ps = conn.prepareStatement(sql);
+
+                // 3. SQL 실행한다
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    MonsterDto monsterDto = new MonsterDto();
+                    monsterDto.setMno(rs.getInt("mno"));
+                    monsterDto.setNickname(rs.getString("nickname"));
+                    monsterDto.setLino(rs.getInt("lino"));
+                    monsterDto.setHp(rs.getInt("hp"));
+                    monsterDto.setStress(rs.getInt("stress"));
+                    monsterDto.setIq(rs.getInt("iq"));
+                    monsterDto.setStrong(rs.getInt("strong"));
+                    mstat.add(monsterDto);
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return mstat;
+        }
+
+        public boolean evolution () {
+            while (true) {
+                for (int i = 0 ; i < mlist.size() ; i++) {
+                    for (int j = 0 ; j < mstat.size() ; j++){
+                        if ( mlist.get(i).getLino() == mstat.get(j).getLino()){
+                            if ( mlist.get(i).getIq() <= mstat.get(j).getIq() && mlist.get(i).getStrong() <= mstat.get(j).getStrong()){
+
+                            }
+                        }
+                        }
+                    }
+
+
+                    }
+
+                }
+
+
+    
+                
+                
             }
 
 
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+    // if ( mlist.get(i).getIq() <= mstat.get(j).getIq() && mlist.get(i).getStrong() <= mstat.get(j).getStrong())
+    //===============================김건우===============================
 
-        return result;
-    }
-}
+
+
+

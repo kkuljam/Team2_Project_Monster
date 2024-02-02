@@ -1,6 +1,7 @@
 package Monster.Controller;
 
 import Monster.Model.Dao.MonsterDao;
+import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
@@ -18,13 +19,19 @@ public class MonsterController {
     }
 
 
-
+    //===============================김건우===============================
     public ArrayList<MonsterListDto> monsterList(){
         ArrayList<MonsterListDto> result = new ArrayList<>();
         result = MonsterDao.getInstance().monsterList();
         return result;
     }
 
+    public ArrayList<MonsterDto> monsterDtos(){
+        ArrayList<MonsterDto> result = new ArrayList<>();
+        result = MonsterDao.getInstance().monsterDtos();
+        return result;
+    }
+    //===============================김건우===============================
 
 
     public boolean monsterExistence(int mno){// 몬스터 존재 확인 메소드
