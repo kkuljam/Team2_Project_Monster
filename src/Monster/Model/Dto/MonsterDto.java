@@ -11,6 +11,7 @@ public class MonsterDto {
     private int iq;             // 몬스터 지능
     private int strong;        	// 몬스터 힘
 
+    public String[]stat={"hp","stress","iq","strong"};
 
     // 2. 생성자
     public MonsterDto(){}       // 기본생성자
