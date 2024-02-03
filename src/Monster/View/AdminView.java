@@ -44,6 +44,7 @@ public class AdminView {
     }
     //회원관리 화면
     public static void MemberManagement(){
+        // 회원관리====================================================
         System.out.println("===========회원 관리==========");
         ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
         for (int i=0;i<memberDtos.size();i++){
@@ -67,7 +68,9 @@ public class AdminView {
             System.out.println("===========회원 관리==========");
             System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 ");
             System.out.println("선택>"); int ch= scanner.nextInt();
-            if(ch==1){// 정보 수정
+            // 정보 수정===============================================
+            if(ch==1){
+                scanner.nextLine();
                 System.out.print("아이디:"); String id= scanner.nextLine();
                 System.out.print("비밀번호:"); String pw= scanner.nextLine();
                 System.out.print("전화번호:"); String phone= scanner.nextLine();
@@ -76,10 +79,24 @@ public class AdminView {
 
 
                 boolean result = AdminController.getInstance().memberChange(memberDto);
+                if(result=true){
+                    System.out.println("수정완료");
 
+                }else{
+                    System.out.println("수정실패");
+                }
+                AdminRun();
             }
-            else if (ch==2) {// 정보 삭제
+            // 정보 삭제=====================================================
+            else if (ch==2) {
                 System.out.println("삭제");
+                int result= AdminController.getInstance().memberDelete(mno);
+                if(result==1){
+                    System.out.println("회원번호"+mno+"번이 삭제되었습니다.");
+                }else {
+                    System.out.println("삭제 실패");
+                }
+                AdminRun();
             }
         }
    }

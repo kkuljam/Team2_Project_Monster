@@ -20,10 +20,17 @@ public class AdminController {
         result = AdminDao.getInstance().MemberPrint(memberDto);
         return result;
     }
-
+    // 정보 수정===============================================
     public boolean  memberChange(MemberDto memberDto){
         boolean result =false;
         result=AdminDao.getInstance().memberChange(memberDto);
+
+        return result;
+    }
+    // 정보 삭제=====================================================
+    public int  memberDelete(int mno){
+        int result =0;
+        result=AdminDao.getInstance().memberDelete(mno);
 
         return result;
     }

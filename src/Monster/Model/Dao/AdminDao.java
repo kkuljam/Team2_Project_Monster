@@ -9,7 +9,7 @@ public class AdminDao extends Dao {
     private static AdminDao adminDao = new AdminDao();
     public static AdminDao getInstance(){return adminDao;}
 
-    //회원정보 불러오기
+    //회원정보 출력
     public ArrayList<MemberDto> MemberPrint(MemberDto memberDto){
         try{
             String sql="select * from member;";
@@ -34,21 +34,42 @@ public class AdminDao extends Dao {
         }
     return null;
     }
+    // 정보 수정===============================================
     public boolean memberChange(MemberDto memberDto){
         try {
-            String sql= "update member set mid= ? ,mpw= ?,mphone= ?,mname= ? where mid= ?";
+            String sql= "update member set mid= ? ,mpw= ?,mphone= ?,mname= ? where mno= ?";
             ps=conn.prepareStatement(sql);
             ps.setString(1,memberDto.getMid());
-            ps.setString(2,memberDto.getMid());
-            ps.setString(3,memberDto.getMid());
-            ps.setString(4,memberDto.getMid());
+            ps.setString(2,memberDto.getMpw());
+            ps.setString(3,memberDto.getMphone());
+            ps.setString(4,memberDto.getMname());
             ps.setInt(5,memberDto.getMno());
+            int count = ps.executeUpdate();
 
+            if(count == 1){
+                return true;
+            }
 
         }catch (Exception e){
             System.out.println(e);
         }
-        return true;
+        return false;
+    }
+    // 정보 삭제=====================================================
+    public int memberDelete(int mno){
+        try {
+            String sql="delete from member where mno= ?";
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1,mno);
+            int count =ps.executeUpdate();
+            if(count==1){
+                return 1;
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return 0;
     }
 
 
