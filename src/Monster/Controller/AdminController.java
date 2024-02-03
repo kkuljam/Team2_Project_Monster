@@ -1,10 +1,9 @@
 package Monster.Controller;
 
 import Monster.Model.Dao.AdminDao;
-import Monster.Model.Dao.MemberDao;
 import Monster.Model.Dto.MemberDto;
-import Monster.View.AdminView;
-import Monster.View.MemberView;
+import Monster.Model.Dto.MonsterDto;
+import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,11 @@ public class AdminController {
         result=AdminDao.getInstance().memberDelete(mno);
 
         return result;
+    }
+    public ArrayList<MonsterListDto>monsterListPrint(MonsterListDto monsterListDto){
+
+        ArrayList<MonsterListDto>result= null;
+        return null;
     }
 
 

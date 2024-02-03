@@ -2,6 +2,8 @@ package Monster.View;
 
 import Monster.Controller.AdminController;
 import Monster.Model.Dto.MemberDto;
+import Monster.Model.Dto.MonsterDto;
+import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,6 +34,7 @@ public class AdminView {
             }
             else if (ch==2) {
                 System.out.println("육성관리메소드");
+                FosterManagement();
             }
             else if (ch==3) {
                 System.out.println("로그아웃 로그인화면으로이동");
@@ -100,4 +103,54 @@ public class AdminView {
             }
         }
    }
+
+
+
+   // 육성관리==============================================
+   public static void FosterManagement(){
+       System.out.println("===========육성 관리==========");
+       System.out.println("1.기능 2. 몬스터 ");
+       System.out.println("선택>"); int ch= scanner.nextInt();
+       if(ch==1){
+           System.out.println("기능");
+           FuntionManagement();
+
+       }
+       else if(ch==2){
+           System.out.println("몬스터");
+           MonsterManagement();
+       }
+
+
+   }
+
+   // 기능 관리==============================================
+    public static void FuntionManagement(){
+
+    }
+
+    // 몬스터 관리=============================================
+    public  static void MonsterManagement(){
+        ArrayList<MonsterListDto> monsterlistDtos = AdminController.getInstance().monsterListPrint(new MonsterListDto());
+        for (int i=0;i<monsterlistDtos.size();i++){
+            System.out.print(monsterlistDtos.get(i).getLino()+"\t");
+            System.out.print(monsterlistDtos.get(i).getStepno());
+            System.out.print(monsterlistDtos.get(i).getImg()+"\t");
+            System.out.print(monsterlistDtos.get(i).getIq()+"\t");
+            System.out.println(monsterlistDtos.get(i).getStrong()+"\t");
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
