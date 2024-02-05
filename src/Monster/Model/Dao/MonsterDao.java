@@ -50,7 +50,7 @@ public class MonsterDao extends Dao{
             }
             System.out.println(a+"카운트 값");
             Random random=new Random(); // 난수 객체 생성
-            int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤
+            int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤 // 번호 랜덤 수정 필요함
             if(mRandom==0){
                 mRandom+=1;
             }else {

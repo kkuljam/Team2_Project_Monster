@@ -14,7 +14,7 @@ public class MonsterView {
     Scanner scanner=new Scanner(System.in);
 
     public static void run(){
-        int mno=1;// 회원번호 불러와야함
+        int mno=3;// 회원번호 불러와야함
         boolean result= MonsterController.getInstance().monsterExistence(mno); //몬스터 보유 여부 메소드
        /* if(result){
             result=false;
