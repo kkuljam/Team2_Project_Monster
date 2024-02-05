@@ -19,7 +19,14 @@ public class MonsterListDto {
         this.strong = strong;
     }
     // 몬스터 수정용 생성자
-    public MonsterListDto(String img, int iq, int strong) {
+    public MonsterListDto(int lino, String img, int iq, int strong) {
+        this.lino = lino;
+        this.img = img;
+        this.iq = iq;
+        this.strong = strong;
+    }
+    public MonsterListDto(int lino){
+        this.lino=lino;
     }
 
 

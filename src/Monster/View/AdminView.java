@@ -153,12 +153,16 @@ public class AdminView {
     // 몬스터 수정=============================================
     public static void monsterUpdate(){
 
-        System.out.println("변경할 이미지:"); String img =scanner.next();
         System.out.println("지능:");         int iq =scanner.nextInt();
         System.out.println("힘:");         int strong =scanner.nextInt();
-        MonsterListDto monsterListDto=new MonsterListDto(img,iq,strong);
 
-        boolean result= AdminController.getInstance().monsterChange(monsterListDto);
+        System.out.println("변경할 이미지:"); String img =scanner.next();
+
+
+
+        MonsterListDto monsterListDto=new MonsterListDto(no,img,iq,strong);
+
+        boolean result= AdminController.getInstance().monsterUpdate(monsterListDto);
 
         if(result=true){
             System.out.println("수정 성공");
@@ -171,7 +175,15 @@ public class AdminView {
     public static void monsterInsert(){};
 
     // 몬스터 삭제=============================================
-    public static void monsterDelete(){};
+    public static void monsterDelete(){
+        MonsterListDto monsterListDto=new MonsterListDto(no);
+        boolean result=AdminController.getInstance().monsterDelete(monsterListDto);
+        if(result=true){
+            System.out.println("삭제성공");
+        }else{
+            System.out.println("삭제실패");
+        }
+    };
 
 
 

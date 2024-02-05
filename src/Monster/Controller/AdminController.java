@@ -41,9 +41,15 @@ public class AdminController {
         return result;
     }
     // 몬스터리스트 수정
-    public  boolean monsterChange(MonsterListDto monsterListDto){
-        boolean result=AdminDao.getInstance().monsterChange(monsterListDto);
+    public  boolean monsterUpdate(MonsterListDto monsterListDto){
+        boolean result=AdminDao.getInstance().monsterUpdate(monsterListDto);
         return result;
+    }
+
+    //몬스터 리스트에서 삭제
+    public boolean monsterDelete(MonsterListDto monsterListDto){
+        boolean result=AdminDao.getInstance().monsterDelete(monsterListDto);
+    return result;
     }
 
 }
