@@ -2,6 +2,7 @@ package Monster.View;
 
 import Monster.Controller.MonsterController;
 import Monster.Model.Dto.EventDto;
+import Monster.Model.Dto.MonsterDto;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,9 +16,9 @@ public class MonsterView {
     public static void run(){
         int mno=3;// 회원번호 불러와야함
         boolean result= MonsterController.getInstance().monsterExistence(mno); //몬스터 보유 여부 메소드
-        if(result){
+       /* if(result){
             result=false;
-        }
+        }*/
         if(result){
             Scanner scanner=new Scanner(System.in);
             System.out.println("\n" +
@@ -52,6 +53,20 @@ public class MonsterView {
             if(go){
                 System.out.println(nickName+"이(가) 깨어나고 있습니다.");
                 try {
+                    System.out.println("\n" +
+                            "⣿⣦⡫⢿⣻⣆⠱⡀⠱⢘⣧⢺⡗⣽⣿⢰⠃⢠⢡⣾⡟⣧⣿⣿⢯\n" +
+                            "⡈⠛⢿⣮⢻⣻⣆⠱⡀⢃⢿⡸⡇⣿⡿⡎⢠⢣⣾⢏⣷⣿⡗⣯⠾\n" +
+                            "⢮⡑⢄⠙⢷⣝⢿⣷⣥⠈⣿⡧⣇⣿⣿⢡⣳⣿⢭⣿⢿⡺⢞⡩⠞\n" +
+                            "⢦⣍⡳⢌⡢⢝⣷⡿⣿⣧⢸⣿⣳⣿⡧⣿⣿⣽⢿⣟⡫⢕⣩⣴⠿\n" +
+                            "⢷⣮⣝⣳⢻⢶⣌⡻⣿⣟⣷⣿⣻⣿⣿⣟⣿⡾⣟⣪⢶⣻⢭⣶⣾\n" +
+                            "⡷⣶⣮⣯⣟⣷⣿⣻⣷⣽⣟⣿⣿⣾⣟⣿⣿⢾⣿⣾⣿⣻⣿⣿⣻\n" +
+                            "⠖⠞⠞⢟⢟⣯⣿⣿⣿⣽⣿⣿⣽⣾⣿⣯⣿⣿⡿⣷⣿⣷⢷⣶⣶\n" +
+                            "⣋⣫⣭⣽⣽⢿⣷⣿⡽⣯⣷⡿⣿⣯⣿⢿⣯⣷⣿⣿⣷⣽⣛⡻⡝\n" +
+                            "⢟⣫⣗⡷⣟⡟⢋⣵⣾⣷⣿⢹⣿⣽⡞⣿⣻⣷⣮⡑⠫⢛⠫⢿⣿\n" +
+                            "⠟⣩⠵⠊⣡⢶⣿⣟⣾⢟⠆⣿⢿⣸⣷⡈⢏⢷⣿⢿⣷⠤⡈⠀⢄\n" +
+                            "⠋⣡⠴⣫⣞⡯⢯⣾⠏⡎⢰⢿⢽⢜⣿⠲⠈⢢⠻⣿⣝⢿⣬⡑⠤\n" +
+                            "⠞⣡⡞⣧⢟⣵⣿⠇⡼⠀⡿⣸⢸⡕⣽⣇⢡⠀⢣⠈⢻⣷⣜⠻⣶\n" +
+                            "⡾⣣⡿⣋⣾⣿⡎⣼⡃⣸⠇⣇⣻⡇⣺⣿⡀⢣⠀⢳⡀⠹⣿⣷⣜\n");
                     Thread.sleep(5);
                 } catch (InterruptedException e) {
                     System.out.println(e);
@@ -62,8 +77,16 @@ public class MonsterView {
 
         while (true){
             Scanner scanner=new Scanner(System.in);
+            // 몬스터 정보 출력 메소드로 닉네임, 진화단계, 게이지 불러오기
+            MonsterDto monsterDto1=MonsterController.getInstance().monsterPrint(mno);
+            // 찾은 진화단계로 진화 이미지 불러오기
+            int level=monsterDto1.getLino(); // 진화 단계 저장
+            String monIng=MonsterController.getInstance().monsterImg(level);// 진화 이미지 출력 메소드
 
-            //캐릭터+닉네임+게이지 화면 띄워야함
+            // 체력, 스트레스 게이지
+            System.out.println(monIng);                     // 몬스터 이미지
+            System.out.println(monsterDto1.getNickname());  // 몬스터 이름
+            // 지능, 힘 숫자
 
             System.out.println("0. 로그아웃");
 
@@ -79,6 +102,8 @@ public class MonsterView {
             if(ch==0){
                 // 로그아웃 메소드
             } else if (ch<= eventDtos.size()) {
+                String eImg=MonsterController.getInstance().eventExecution(ch,mno);
+                System.out.println(eImg);
 
                 // 기능 메소드
             }

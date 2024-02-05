@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 
 public class MonsterController {
+    public String[]stat={"hp","stress","iq","strong"};
     private MonsterController() {
     }
-
     ;
     private static MonsterController monsterController = new MonsterController();
 
@@ -52,8 +52,18 @@ public class MonsterController {
         ArrayList<EventDto>eDtos=MonsterDao.getInstance().eventPrint(eventDto);
         return eDtos;
     }
-    public String eventExecution(int ch){
-        String result = null;
+    //---- 몬스터 정보 출력 메소드
+    public MonsterDto monsterPrint(int mno){
+        return MonsterDao.getInstance().monsterPrint(mno);
+    }
+    //--- 몬스터 진화 이미지 출력 메소드
+    public String monsterImg(int level){
+        String result=MonsterDao.getInstance().monsterImg(level);
+        return result;
+    }
+    //---이벤트 선택시 실행 및 이미지 반환 메소드
+    public String eventExecution(int ch,int mno){
+        String result = MonsterDao.getInstance().eventExecution(ch,mno);
         return result;
     }
     //==================================================
