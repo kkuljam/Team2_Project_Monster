@@ -1,6 +1,7 @@
 package Monster.Model.Dao;
 
 import Monster.Model.Dto.MemberDto;
+import Monster.Model.Dto.MonsterListDto;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,36 @@ public class AdminDao extends Dao {
         }
         return 0;
     }
+    // 몬스터리스트 출력========================================
+    public ArrayList<MonsterListDto> monsterListPrint(MonsterListDto monsterListDto){
+        try {
+            String sql="select * from monsterlist";
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            ArrayList<MonsterListDto>monsterListDtos= new ArrayList<>();
+            while(rs.next()){
+                MonsterListDto dto= new MonsterListDto();
+                dto.setLino(rs.getInt("lino"));
+                dto.setStepno(rs.getInt("stepno"));
+                dto.setIq(rs.getInt("iq"));
+                dto.setStrong(rs.getInt("strong"));
+                monsterListDtos.add(dto);
+            }
+            return monsterListDtos;
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
+    //몬스터리스트 수정
+    public boolean monsterChange(MonsterListDto monsterListDto){
 
 
+
+
+
+        boolean result =true;
+        return result;
+    }
 }

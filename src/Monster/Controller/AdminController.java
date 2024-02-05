@@ -33,11 +33,17 @@ public class AdminController {
 
         return result;
     }
+    // 몬스터리스트 출력
     public ArrayList<MonsterListDto>monsterListPrint(MonsterListDto monsterListDto){
 
         ArrayList<MonsterListDto>result= null;
-        return null;
+        result=AdminDao.getInstance().monsterListPrint(monsterListDto);
+        return result;
     }
-
+    // 몬스터리스트 수정
+    public  boolean monsterChange(MonsterListDto monsterListDto){
+        boolean result=AdminDao.getInstance().monsterChange(monsterListDto);
+        return result;
+    }
 
 }

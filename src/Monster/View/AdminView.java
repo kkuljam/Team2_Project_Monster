@@ -130,22 +130,46 @@ public class AdminView {
     }
 
     // 몬스터 관리=============================================
+    static int no= 0;
     public  static void MonsterManagement(){
         ArrayList<MonsterListDto> monsterlistDtos = AdminController.getInstance().monsterListPrint(new MonsterListDto());
         for (int i=0;i<monsterlistDtos.size();i++){
-            System.out.print(monsterlistDtos.get(i).getLino()+"\t");
-            System.out.print(monsterlistDtos.get(i).getStepno());
-            System.out.print(monsterlistDtos.get(i).getImg()+"\t");
-            System.out.print(monsterlistDtos.get(i).getIq()+"\t");
-            System.out.println(monsterlistDtos.get(i).getStrong()+"\t");
-
+            System.out.print("도감번호:"+monsterlistDtos.get(i).getLino()+"\t");
+            System.out.print("진화단계:"+monsterlistDtos.get(i).getStepno());
+            System.out.print("지능:"+monsterlistDtos.get(i).getIq()+"\t");
+            System.out.println("힘:"+monsterlistDtos.get(i).getStrong()+"\t");
         }
+        System.out.println("===========몬스터리스트 관리==========");
+        System.out.println("1. 몬스터 정보 수정 2. 몬스터 추가 3. 몬스터 삭제 ");
+        System.out.println("선택>"); int ch=scanner.nextInt();
+        System.out.println("수정할 몬스터 번호:"); no=scanner.nextInt();
+        if(ch==1){monsterUpdate();}
+        else if(ch==2){monsterInsert();}
+        else if(ch==3){monsterDelete();}
 
     }
+    // 몬스터 수정=============================================
+    public static void monsterUpdate(){
 
+        System.out.println("변경할 이미지:"); String img =scanner.next();
+        System.out.println("지능:");         int iq =scanner.nextInt();
+        System.out.println("힘:");         int strong =scanner.nextInt();
+        MonsterListDto monsterListDto=new MonsterListDto(img,iq,strong);
 
+        boolean result= AdminController.getInstance().monsterChange(monsterListDto);
 
+        if(result=true){
+            System.out.println("수정 성공");
+        }else{
+            System.out.println("수정 실패");
+        }
+    };
 
+    // 몬스터 추가=============================================
+    public static void monsterInsert(){};
+
+    // 몬스터 삭제=============================================
+    public static void monsterDelete(){};
 
 
 
