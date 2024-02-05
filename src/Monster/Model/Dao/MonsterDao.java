@@ -180,7 +180,7 @@ public class MonsterDao extends Dao {
                 rs= ps.executeQuery();
                 if(rs.next()){
                     upR+=rs.getInt(upStat);
-                    downR+=rs.getInt(downStat);
+                    downR-=rs.getInt(downStat);
                 }
                 System.out.println("원본숫자 불러와서 더했음");
 
