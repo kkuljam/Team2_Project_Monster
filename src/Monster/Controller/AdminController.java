@@ -1,6 +1,7 @@
 package Monster.Controller;
 
 import Monster.Model.Dao.AdminDao;
+import Monster.Model.Dto.EventDto;
 import Monster.Model.Dto.MemberDto;
 import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.MonsterListDto;
@@ -46,4 +47,11 @@ public class AdminController {
         return result;
     }
 
+
+    // =================================================김건우==================================================================
+    public boolean eventChange(EventDto eventDto){
+        boolean result = AdminDao.getInstance().eventChange(eventDto);
+        return result;
+    }
+    // =================================================김건우==================================================================
 }

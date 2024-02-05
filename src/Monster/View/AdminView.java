@@ -2,14 +2,20 @@ package Monster.View;
 
 import Monster.Controller.AdminController;
 import Monster.Controller.MemberController;
+import Monster.Model.Dto.EventDto;
 import Monster.Model.Dto.MemberDto;
 import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.MonsterListDto;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AdminView {
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     //싱글톤
     private AdminView(){}
     private static AdminView adminView= new AdminView();
@@ -129,6 +135,42 @@ public class AdminView {
    // 기능 관리==============================================
     public static void FuntionManagement(){
 
+
+        System.out.println("===========이벤트 관리==========");
+        System.out.println("1.이벤트 정보 수정 2.이벤트 추가 3.이벤트 삭제");
+        System.out.println("선택>"); int ch=scanner.nextInt();
+        if (ch == 1){
+            System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
+            System.out.println("이벤트 명 : "); String ename = scanner.next();
+            System.out.println("이벤트 이미지 " ); // BigDecimal eimg = scanner.nextBigDecimal();
+            String eimg = "";
+            try {
+                String str;
+                while (!(str= br.readLine()).equals("")){
+                    eimg += str+"\n";
+                }
+
+            } catch (Exception e){
+                System.out.println(e);
+            }
+            System.out.println("0.hp 1.stress 2.iq 3.strong");
+            System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
+            System.out.println("0.hp 1.stress 2.iq 3.strong");
+            System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
+            System.out.println(eimg);
+            EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
+            boolean result = AdminController.getInstance().eventChange(eventDto);
+            if(result=true){
+                System.out.println("수정완료");
+
+            }else{
+                System.out.println("수정실패");
+            }
+            AdminRun();
+
+        }
+        else if (ch == 2) {}
+        else if (ch == 3) {}
     }
 
     // 몬스터 관리=============================================

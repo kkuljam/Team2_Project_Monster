@@ -1,5 +1,7 @@
 package Monster.Model.Dto;
 
+import java.util.List;
+
 public class EventDto {
 
     //1. 필드
@@ -23,6 +25,9 @@ public class EventDto {
     public EventDto(int eno, String ename) {
         this.eno = eno;
         this.ename = ename;
+    }
+
+    public EventDto(String ename, String eimg, int statup, int statdown) {
     }
 
     //3.메소드
