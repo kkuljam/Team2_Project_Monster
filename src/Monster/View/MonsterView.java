@@ -1,5 +1,6 @@
 package Monster.View;
 
+import Monster.Controller.MemberController;
 import Monster.Controller.MonsterController;
 import Monster.Model.Dto.EventDto;
 import Monster.Model.Dto.MonsterDto;
@@ -11,14 +12,11 @@ public class MonsterView {
     private MonsterView(){};
     private static MonsterView monsterView=new MonsterView();
     public static MonsterView getInstance(){return monsterView;}
-    Scanner scanner=new Scanner(System.in);
 
-    public static void run(){
-        int mno=3;// 회원번호 불러와야함
+    public void run(){
+        int mno= MemberController.getInstance().logMno;// 회원번호 불러와야함
         boolean result= MonsterController.getInstance().monsterExistence(mno); //몬스터 보유 여부 메소드
-       /* if(result){
-            result=false;
-        }*/
+
         if(result){
             Scanner scanner=new Scanner(System.in);
             System.out.println("\n" +
@@ -109,11 +107,5 @@ public class MonsterView {
             }
         }
     }
-
-    public static void main(String[] args) {
-        run();
-    }
-
-
 
 }

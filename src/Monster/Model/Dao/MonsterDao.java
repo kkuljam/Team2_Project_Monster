@@ -53,6 +53,8 @@ public class MonsterDao extends Dao {
             int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤 // 번호 랜덤 수정 필요함
             if(mRandom==0){
                 mRandom+=1;
+            }else if(mRandom==1){
+                mRandom+=3;
             }else {
                 mRandom=mRandom*3;
             }
