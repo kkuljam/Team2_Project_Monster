@@ -26,7 +26,16 @@ public class MonsterDto {
         this.strong = strong;
     }
 
-// 3. 메소드
+    public MonsterDto(String nickname, int lino, int hp, int stress, int iq, int strong) {
+        this.nickname = nickname;
+        this.lino = lino;
+        this.hp = hp;
+        this.stress = stress;
+        this.iq = iq;
+        this.strong = strong;
+    }
+
+    // 3. 메소드
 
 
     public int getMno() {
