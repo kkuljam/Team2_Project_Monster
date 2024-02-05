@@ -4,7 +4,7 @@ import Monster.Model.Dto.MemberDto;
 
 public class MemberDao extends Dao{
     //싱글톤
-    private MemberDao(){};
+    private MemberDao(){}
     private static MemberDao memberDao = new MemberDao();
     public static MemberDao getInstance(){return memberDao;}
 
@@ -64,7 +64,7 @@ public class MemberDao extends Dao{
         return false; //중복없음
     }
 
-    int no ;
+
     //로그인 아이디 유효성 검사
     public int loginId(MemberDto memberDto){
         try {
@@ -83,7 +83,6 @@ public class MemberDao extends Dao{
             //sql처리
             if (rs.next()){
                 //비밀번호 유효성 검사를 위한 mno저장
-                no = rs.getInt(1);
                 //System.out.println(no);
 
                 return 1;// 아이디 동일
@@ -100,18 +99,18 @@ public class MemberDao extends Dao{
     public int loginPw(MemberDto memberDto){
         try {
             //sql작성
-            String sql = "select * from member where mpw = ?";
+            String sql = "select mpw from member where mid = ?";
             //sql기재
             ps = conn.prepareStatement(sql);
             //?매개변수대입
-            ps.setString(1,memberDto.getMpw());
+            ps.setString(1,memberDto.getMid());
 
             //sql 실행
             rs = ps.executeQuery();
 
             //sql처리
             if (rs.next()){
-                if(no==rs.getInt(1)) {
+                if(memberDto.getMpw().equals(rs.getString(1))) {
                     return 1;// 비밀번호 동일
 
                 }
@@ -125,6 +124,71 @@ public class MemberDao extends Dao{
         return 2; // 비밀번호 틀림
     }
 
+    //로그인 정보저장을 위한 회원정보
+
+
+    //비밀번호확인
+    public int checkPw(MemberDto memberDto){
+        System.out.println("memberDto = " + memberDto);
+        int result = 0;
+        try {
+            //sql작성
+            String sql = "select mpw from member where mno = ?";
+            //sql기재
+            ps = conn.prepareStatement(sql);
+            //?매개변수대입
+            ps.setInt(1,memberDto.getMno());
+            //sql실행
+            rs = ps.executeQuery();
+            //sql처리
+            if(rs.next()){
+                if(memberDto.getMpw().equals(rs.getString(1))){
+                    result = 1;
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    //비밀번호수정
+    public boolean rePw(MemberDto memberDto1){
+        try {
+            //sql작성
+            String sql = "update member set mpw = ? where mno= ?";
+            //sql기재
+            ps = conn.prepareStatement(sql);
+            //?매개변수대입
+            ps.setString(1,memberDto1.getMpw());
+            ps.setInt(2,memberDto1.getMno());
+            //sql실행
+            int count = ps.executeUpdate();
+            //sql처리
+            if(count==1){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    //
+    public int findMno(String mid){
+        try {
+            String sql = "select mno from member where mid =?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1,mid);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return 0;
+    }
 
 
 

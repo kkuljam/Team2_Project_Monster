@@ -22,6 +22,10 @@ public class MemberDto {
         this.mname = mname;
     }
 
+    //비밀번호변경/회원탈퇴를 위한 생성자
+    public MemberDto(String mpw) {
+        this.mpw = mpw;
+    }
 
     @Override
     public String toString() {
