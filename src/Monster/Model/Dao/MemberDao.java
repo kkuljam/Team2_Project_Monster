@@ -95,6 +95,8 @@ public class MemberDao extends Dao{
         return 2; // 아이디 틀림
     }
 
+
+
     //로그인 비밀번호 유효성검사
     public int loginPw(MemberDto memberDto){
         try {

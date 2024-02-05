@@ -2,6 +2,7 @@ package Monster.Controller;
 
 import Monster.Model.Dao.MemberDao;
 import Monster.Model.Dto.MemberDto;
+import Monster.View.MainView;
 
 public class MemberController {
     //싱글톤
