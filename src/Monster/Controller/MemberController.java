@@ -21,6 +21,9 @@ public class MemberController {
         return result;
     }
 
+    //로그인상태
+    int logMno=0;
+
     //로그인
     public int login(MemberDto memberDto){
         int result = 0;
@@ -31,17 +34,39 @@ public class MemberController {
 
 
         if(result1==1&&result2==1){
+            //로그인상태확인 회원번호
+            //System.out.println(logMno);
             result = 1; //로그인 성공
+            logMno = MemberDao.getInstance().findMno(memberDto.getMid());
         }else if (result1 == 2){
             result = 2; //아이디틀림
         } else if (result2==2) {
             result = 3; //비밀번호 틀림
         }
-
         return result;
-
     }
 
+    //로그아웃
+    public void logOut(){
+        logMno = 0;
+        System.out.println(logMno);
+    }
 
+    //비밀번호확인
+    public int checkPw(MemberDto memberDto){
+        int result = 0;
+        //다오에게 값받기
+        memberDto.setMno(logMno);
+        result = MemberDao.getInstance().checkPw(memberDto);
+        return result;
+    }
+
+    //비밀번호변경
+    public boolean rePw(MemberDto memberDto1){
+        boolean result = false;
+        memberDto1.setMno(logMno);
+        result = MemberDao.getInstance().rePw(memberDto1);
+        return result;
+    }
 
 }
