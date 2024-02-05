@@ -44,11 +44,6 @@ public class MemberController {
         return result;
 
     }
-    //===============================김건우===============================
-    public void logOut(){ // 생각중
-        result = 0;
-        MainView.getInstance().mainView();
-    }
-    //===============================김건우===============================
+
 
 }
