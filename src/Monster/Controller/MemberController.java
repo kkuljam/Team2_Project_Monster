@@ -2,6 +2,7 @@ package Monster.Controller;
 
 import Monster.Model.Dao.MemberDao;
 import Monster.Model.Dto.MemberDto;
+import Monster.View.MainView;
 
 public class MemberController {
     //싱글톤
@@ -21,9 +22,11 @@ public class MemberController {
         return result;
     }
 
+
+    int result = 0;
     //로그인
     public int login(MemberDto memberDto){
-        int result = 0;
+
 
         int result1 = MemberDao.getInstance().loginId(memberDto);
         int result2 = MemberDao.getInstance().loginPw(memberDto);
@@ -41,7 +44,11 @@ public class MemberController {
         return result;
 
     }
-
-
+    //===============================김건우===============================
+    public void logOut(){ // 생각중
+        result = 0;
+        MainView.getInstance().mainView();
+    }
+    //===============================김건우===============================
 
 }

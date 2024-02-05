@@ -1,6 +1,7 @@
 package Monster.View;
 
 import Monster.Controller.AdminController;
+import Monster.Controller.MemberController;
 import Monster.Model.Dto.MemberDto;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class AdminView {
             }
             else if (ch==3) {
                 System.out.println("로그아웃 로그인화면으로이동");
+                MemberController.getInstance().logOut();
                 return;
             }
 

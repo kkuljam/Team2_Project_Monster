@@ -21,6 +21,7 @@ public class MonsterController {
 
 
     //===============================김건우===============================
+    //----- 출력용 메소드
     public ArrayList<MonsterListDto> monsterList(){
         ArrayList<MonsterListDto> result = new ArrayList<>();
         result = MonsterDao.getInstance().monsterList();
@@ -32,6 +33,12 @@ public class MonsterController {
         result = MonsterDao.getInstance().monsterDtos();
         return result;
     }
+
+    /*public int findstepno(MonsterListDto monsterListDto){
+        int result = 0;
+        result = MonsterDao.getInstance().findstepno(monsterListDto);
+        return result;
+    }*/
     //===============================김건우===============================
     
     //===================김민지==========================
