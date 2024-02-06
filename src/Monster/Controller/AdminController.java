@@ -65,4 +65,16 @@ public class AdminController {
         return result;
     }
     // =================================================김건우==================================================================
+    public boolean eventInsert(EventDto eventDto){
+        boolean result = AdminDao.getInstance().eventInsert(eventDto);
+        return result;
+    }
+    public boolean eventDelete(EventDto eventDto){
+        boolean result = AdminDao.getInstance().eventDelete(eventDto);
+        return result;
+    }
+
+
+
+
 }

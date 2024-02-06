@@ -27,6 +27,10 @@ public class EventDto {
         this.ename = ename;
     }
 
+    public EventDto(int eno) {
+        this.eno = eno;
+    }
+
     public EventDto(String ename, String eimg, int statup, int statdown) {
     }
 
