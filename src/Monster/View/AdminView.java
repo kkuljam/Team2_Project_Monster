@@ -174,7 +174,6 @@ public class AdminView {
     }
 
     // 몬스터 관리=============================================
-    static int no= 0;
     public  static void MonsterManagement(){
         ArrayList<MonsterListDto> monsterlistDtos = AdminController.getInstance().monsterListPrint(new MonsterListDto());
         for (int i=0;i<monsterlistDtos.size();i++){
@@ -186,7 +185,7 @@ public class AdminView {
         System.out.println("===========몬스터리스트 관리==========");
         System.out.println("1. 몬스터 정보 수정 2. 몬스터 추가 3. 몬스터 삭제 ");
         System.out.println("선택>"); int ch=scanner.nextInt();
-        System.out.println("수정할 몬스터 번호:"); no=scanner.nextInt();
+
         if(ch==1){monsterUpdate();}
         else if(ch==2){monsterInsert();}
         else if(ch==3){monsterDelete();}
@@ -194,15 +193,25 @@ public class AdminView {
     }
     // 몬스터 수정=============================================
     public static void monsterUpdate(){
-
+        System.out.println("==============몬스터 수정================");
+        System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         System.out.println("지능:");         int iq =scanner.nextInt();
         System.out.println("힘:");         int strong =scanner.nextInt();
+        System.out.println("변경할 이미지:");
+        String mimg = "";
+        try {
+            String str;
+            while (!(str= br.readLine()).equals("")){
+                mimg += str+"\n";
+            }
 
-        System.out.println("변경할 이미지:"); String img =scanner.next();
+        } catch (Exception e){
+            System.out.println(e);
+        }
 
 
 
-        MonsterListDto monsterListDto=new MonsterListDto(no,img,iq,strong);
+        MonsterListDto monsterListDto=new MonsterListDto(no,mimg,iq,strong);
 
         boolean result= AdminController.getInstance().monsterUpdate(monsterListDto);
 
@@ -214,10 +223,40 @@ public class AdminView {
     };
 
     // 몬스터 추가=============================================
-    public static void monsterInsert(){};
+    public static void monsterInsert(){
+        System.out.println("==============첫번째몬스터 추가================");
+        System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
+        System.out.println();
+        System.out.println("지능:");         int iq =scanner.nextInt();
+        System.out.println("힘:");         int strong =scanner.nextInt();
+        System.out.println("추가할 이미지:");
+        String mimg = "";
+        try {
+            String str;
+            while (!(str= br.readLine()).equals("")){
+                mimg += str+"\n";
+            }
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        MonsterListDto monsterListDto=new MonsterListDto(no,mimg,iq,strong);
+
+        boolean result= AdminController.getInstance().monsterInsert(monsterListDto);
+
+        if(result=true){
+            System.out.println("추가 성공");
+        }else{
+            System.out.println("추가 실패");
+        }
+
+    };
 
     // 몬스터 삭제=============================================
     public static void monsterDelete(){
+        System.out.println("==============몬스터 삭제================");
+        System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         MonsterListDto monsterListDto=new MonsterListDto(no);
         boolean result=AdminController.getInstance().monsterDelete(monsterListDto);
         if(result=true){

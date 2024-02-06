@@ -122,6 +122,27 @@ public class AdminDao extends Dao {
         }
         return false;
     }
+    //몬스터 리스트 추가
+    public boolean monsterInsert(MonsterListDto monsterListDto) {
+        try {
+            String sql = "insert into monsterlist values(?,?,?,?,?)";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, monsterListDto.getLino());
+            ps.setInt(2, monsterListDto.getLino()%3);
+            ps.setString(3, monsterListDto.getImg());
+            ps.setInt(4, monsterListDto.getIq());
+            ps.setInt(5, monsterListDto.getStrong());
+            int count = ps.executeUpdate();
+
+            if (count == 1) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     //몬스터 리스트에서 삭제
     public boolean monsterDelete(MonsterListDto monsterListDto){
         try {
