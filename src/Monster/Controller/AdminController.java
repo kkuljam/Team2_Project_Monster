@@ -46,6 +46,11 @@ public class AdminController {
         boolean result=AdminDao.getInstance().monsterUpdate(monsterListDto);
         return result;
     }
+    //몬스터리스트 추가
+    public boolean monsterInsert(MonsterListDto monsterListDto ){
+        boolean result = AdminDao.getInstance().monsterInsert(monsterListDto);
+        return result;
+    }
 
     //몬스터 리스트에서 삭제
     public boolean monsterDelete(MonsterListDto monsterListDto){
