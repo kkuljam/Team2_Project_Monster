@@ -40,7 +40,6 @@ public class AdminDao extends Dao {
         }
         return null;
     }
-
     // 정보 수정===============================================
     public boolean memberChange(MemberDto memberDto) {
         try {
@@ -153,6 +152,28 @@ public class AdminDao extends Dao {
         return false;
     }
 
+    // =================================================김건우==================================================================
+    // 몬스터이벤트 수정
+    public boolean eventChange(EventDto eventDto){
+        try {
+            String sql= "update event set ename = ? , eimg = ?, statup = ?, statdown = ? where eno= ?";
+            ps=conn.prepareStatement(sql);
+            ps.setString(1 , eventDto.getEname());
+            ps.setString(2 , eventDto.getEimg());
+            ps.setInt(3 , eventDto.getStatUp());
+            ps.setInt(4 , eventDto.getStatDown());
+            ps.setInt(5 , eventDto.getEno());
+            int count = ps.executeUpdate();
 
+            if(count == 1){
+                return true;
+            }
 
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    // =================================================김건우==================================================================
 }

@@ -322,9 +322,23 @@ public class MonsterDao extends Dao {
         }
     }
 
+    // 사망 메소드 ==============================================================
+    public boolean dead() {
+        for (int i = 0; i < mstat.size(); i++) {
+            if (mstat.get(i).getHp() == 0 || mstat.get(i).getStress() == 100) {
+                System.out.println("사망조건 달성");
+                try {
+                    String sql = "delete from monster where mno = ?";
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, "mno");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+        return false;
+    }
 
-
-    // if ( mlist.get(i).getIq() <= mstat.get(j).getIq() && mlist.get(i).getStrong() <= mstat.get(j).getStrong())
     //===============================김건우=====================================================================================
 
 
