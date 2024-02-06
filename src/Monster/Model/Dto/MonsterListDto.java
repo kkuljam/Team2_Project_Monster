@@ -70,5 +70,14 @@ public class MonsterListDto {
         this.strong = strong;
     }
 
-
+    @Override
+    public String toString() {
+        return "MonsterListDto{" +
+                "lino=" + lino +
+                ", stepno=" + stepno +
+                ", img='" + img + '\'' +
+                ", iq=" + iq +
+                ", strong=" + strong +
+                '}';
+    }
 }
