@@ -160,7 +160,7 @@ public class AdminView {
             System.out.println(eimg);
             EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
             boolean result = AdminController.getInstance().eventChange(eventDto);
-            if(result=true){
+            if( result = true ){
                 System.out.println("수정완료");
 
             }else{
