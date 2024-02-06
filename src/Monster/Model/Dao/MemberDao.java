@@ -130,9 +130,9 @@ public class MemberDao extends Dao{
 
 
     //비밀번호확인
-    public int checkPw(MemberDto memberDto){
+    public boolean checkPw(MemberDto memberDto){
         System.out.println("memberDto = " + memberDto);
-        int result = 0;
+
         try {
             //sql작성
             String sql = "select mpw from member where mno = ?";
@@ -145,13 +145,13 @@ public class MemberDao extends Dao{
             //sql처리
             if(rs.next()){
                 if(memberDto.getMpw().equals(rs.getString(1))){
-                    result = 1;
+                    return true;
                 }
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return result;
+        return false;
     }
 
     //비밀번호수정
@@ -176,7 +176,7 @@ public class MemberDao extends Dao{
         return false;
     }
 
-    //
+    //회원번호찾기
     public int findMno(String mid){
         try {
             String sql = "select mno from member where mid =?";
@@ -192,6 +192,26 @@ public class MemberDao extends Dao{
         return 0;
     }
 
+    //회원탈퇴
+    public boolean withdraw(MemberDto memberDto){
+        try {
+            //sql작성
+            String sql = "delete from member where mno = ?";
+            //sql기재
+            ps = conn.prepareStatement(sql);
+            //?매개변수대입
+            ps.setInt(1,memberDto.getMno());
+            //sql실행
+            int count = ps.executeUpdate();
+            //sql처리
+            if(count==1){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
 
 
 }//c e

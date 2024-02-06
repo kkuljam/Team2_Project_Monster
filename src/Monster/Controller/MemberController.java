@@ -54,11 +54,11 @@ public class MemberController {
     }
 
     //비밀번호확인
-    public int checkPw(MemberDto memberDto){
-        int result = 0;
+    public boolean checkPw(MemberDto memberDto){
+
         //다오에게 값받기
         memberDto.setMno(logMno);
-        result = MemberDao.getInstance().checkPw(memberDto);
+        boolean result = MemberDao.getInstance().checkPw(memberDto);
         return result;
     }
 
@@ -67,6 +67,16 @@ public class MemberController {
         boolean result = false;
         memberDto1.setMno(logMno);
         result = MemberDao.getInstance().rePw(memberDto1);
+        return result;
+    }
+
+    //회원탈퇴
+    public boolean withdraw(MemberDto memberDto){
+
+        //다오에게 값받기
+        memberDto.setMno(logMno);
+        boolean result = MemberDao.getInstance().withdraw(memberDto);
+
         return result;
     }
 
