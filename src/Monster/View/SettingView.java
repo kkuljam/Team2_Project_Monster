@@ -17,6 +17,7 @@ public class SettingView {
     //설정
     public boolean set(){
 
+
             System.out.println("==================설정==================");
             System.out.println("1.비밀번호변경 2.회원탈퇴 3.로그아웃[main] 4.뒤로가기[플레이/설정]");
             int ch2 = scanner.nextInt();
@@ -40,9 +41,11 @@ public class SettingView {
                     MemberDto memberDto1 = new MemberDto(rePw);
 
                     MemberController.getInstance().rePw(memberDto1);
+                    set();
 
                 }else {
                     System.out.println("<알림> 잘못된 비밀번호 입니다.");
+                    set();
 
                 }
 
@@ -63,11 +66,14 @@ public class SettingView {
                     boolean result = MemberController.getInstance().withdraw(memberDto);
                     if (result){
                         System.out.println("<알림> 탈퇴가 완료되었습니다.");
+                        set();
                     }else {
                         System.out.println("<알림> 시스템오류 관리자에게 문의하세요");
+                        set();
                     }
                 }else {
                     System.out.println("<알림> 잘못된 비밀번호 입니다.");
+                    set();
                 }
 
             } else if (ch2==3) {//로그아웃[main]
@@ -78,10 +84,4 @@ public class SettingView {
             }
             return false;
         }
-
-
-
-
-
-
 }
