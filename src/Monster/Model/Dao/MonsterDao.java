@@ -51,12 +51,10 @@ public class MonsterDao extends Dao {
             System.out.println(a+"카운트 값");
             Random random=new Random(); // 난수 객체 생성
             int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤 // 번호 랜덤 수정 필요함
-            if(mRandom==0){
-                mRandom+=1;
-            }else if(mRandom==1){
-                mRandom+=3;
+            if(mRandom!=0){
+                mRandom=mRandom*3+1;
             }else {
-                mRandom=mRandom*3;
+                mRandom+=1;
             }
 
             sql = "insert into monster(mno,lino, nickname)values(?,?,?)";
@@ -150,7 +148,7 @@ public class MonsterDao extends Dao {
             ps=conn.prepareStatement(sql);
             ps.setInt(1,ch);
             rs= ps.executeQuery();
-            System.out.println("숫자 넣어서 이벤트 업다운 불러와");
+            //System.out.println("숫자 넣어서 이벤트 업다운 불러와");
             if(rs.next()) {
                 int up = rs.getInt("statup");
                 int down = rs.getInt("statdown");
@@ -188,7 +186,7 @@ public class MonsterDao extends Dao {
                         downR=0;
                     }
                 }
-                System.out.println("원본숫자 불러와서 더했음");
+                //System.out.println("원본숫자 불러와서 더했음");
 
                 //5. 이름으로 검색해서 업데이트
                 sql = "update monster set "+upStat+" = ? , "+downStat+" = ? where mno= ?";

@@ -48,6 +48,12 @@ public class MonsterController {
          result=MonsterDao.getInstance().monsterExistence(mno);
          return result;
     }
+    public boolean monstername(String nM){
+        if(!nM.equals("")){
+            return false;
+        }
+        return true;
+    }
     //------- 몬스터 랜덤 메소드
     public boolean monsterRandom(String nM,int mno){
         boolean result=true;
