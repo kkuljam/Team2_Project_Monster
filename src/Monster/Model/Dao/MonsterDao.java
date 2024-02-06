@@ -53,6 +53,8 @@ public class MonsterDao extends Dao {
             int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤 // 번호 랜덤 수정 필요함
             if(mRandom==0){
                 mRandom+=1;
+            }else if(mRandom==1){
+                mRandom+=3;
             }else {
                 mRandom=mRandom*3;
             }
@@ -165,7 +167,7 @@ public class MonsterDao extends Dao {
                 }
                 System.out.println("올라갈 스탯 "+upStat+"숫자 "+upR);
                 //4. 두번째 이름 -난수 / but 만약 2번이면 부호 반대로
-                int downR=(int) (Math.random() * 3) + 1;
+                int downR=((int) (Math.random() * 3) + 1)*-1;
                 if(down==2){
                     downR*=-1;
                 }
@@ -179,6 +181,12 @@ public class MonsterDao extends Dao {
                 if(rs.next()){
                     upR+=rs.getInt(upStat);
                     downR+=rs.getInt(downStat);
+                    if(upR>100){
+                        upR=100;
+                    }
+                    if(downR<0){
+                        downR=0;
+                    }
                 }
                 System.out.println("원본숫자 불러와서 더했음");
 

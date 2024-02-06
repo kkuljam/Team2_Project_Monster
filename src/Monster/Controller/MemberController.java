@@ -23,7 +23,7 @@ public class MemberController {
     }
 
     //로그인상태
-    int logMno=0;
+    public int logMno=0;
 
     //로그인
     public int login(MemberDto memberDto){
