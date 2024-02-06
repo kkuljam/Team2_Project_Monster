@@ -192,6 +192,7 @@ public class MonsterDao extends Dao {
 
                 int count=ps.executeUpdate();
                 if(count==1){
+                    evolution();// 진화 메소드
                     System.out.println(" 이벤트 이미지");
                     return eimg;
                 }
