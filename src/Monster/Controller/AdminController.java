@@ -21,10 +21,14 @@ public class AdminController {
         result = AdminDao.getInstance().MemberPrint(memberDto);
         return result;
     }
-    //회원정보유무
-    public boolean checkMem(int mno){
+
+    //회원정보개별출력
+    public MemberDto memprin(int mno){
         boolean result = AdminDao.getInstance().checkMem(mno);
-        return result;
+        if(result){
+            return AdminDao.getInstance().memprin(mno);
+        }
+        return null;
     }
 
     // 정보 수정===============================================

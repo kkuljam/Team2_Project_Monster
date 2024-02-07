@@ -32,7 +32,7 @@ public class AdminDao extends Dao {
                 dto.setMphone(rs.getString("mphone"));
                 dto.setMname(rs.getString("mname"));
                 memberDtos.add(dto);
-                System.out.println(memberDtos);
+
             }
             return memberDtos;
 
@@ -61,6 +61,30 @@ public class AdminDao extends Dao {
         return false;
     }
 
+    //회원정보개별출력
+    public MemberDto memprin(int mno){
+        try {
+            String sql = "select * from member where mno = ?";
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, mno);
+            rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                MemberDto dto = new MemberDto();
+                dto.setMno(rs.getInt("mno"));
+                dto.setMid(rs.getString("mid"));
+                dto.setMpw(rs.getString("mpw"));
+                dto.setMphone(rs.getString("mphone"));
+                dto.setMname(rs.getString("mname"));
+                return dto;
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
+    }
 
     // 정보 수정===============================================
     public boolean memberChange(MemberDto memberDto) {

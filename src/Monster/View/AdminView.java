@@ -66,61 +66,63 @@ public class AdminView {
         }
         System.out.println("회원번호입력:"); int mno=scanner.nextInt();
 
-
-        boolean check = AdminController.getInstance().checkMem(mno);
-        System.out.println(check);
-        for(int i=0; i<memberDtos.size();i++){
-            if(mno==memberDtos.get(i).getMno()&&check==true) {
-                System.out.print(memberDtos.get(i).getMno() + "\t");
-                System.out.print(memberDtos.get(i).getMid() + "\t");
-                System.out.print(memberDtos.get(i).getMpw() + "\t");
-                System.out.print(memberDtos.get(i).getMphone() + "\t");
-                System.out.println(memberDtos.get(i).getMno());
-            }
+        MemberDto admem = AdminController.getInstance().memprin(mno);
 
 
-            if(check==true){
+            if(admem!=null) {
 
-        // 회원 정보 수정/삭제 선택
-            System.out.println("===========회원 관리==========");
-            System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 ");
-            System.out.println("선택>"); int ch= scanner.nextInt();
-            // 정보 수정===============================================
-            if(ch==1){
-
-                scanner.nextLine();
-                System.out.print("아이디:"); String id= scanner.nextLine();
-                System.out.print("비밀번호:"); String pw= scanner.nextLine();
-                System.out.print("전화번호:"); String phone= scanner.nextLine();
-                System.out.print("이름:"); String name= scanner.nextLine();
-                MemberDto memberDto=new MemberDto(mno,id,pw,phone,name);
+                System.out.print(admem.getMno()+"\t");
+                System.out.print(admem.getMid()+"\t");
+                System.out.print(admem.getMpw()+"\t");
+                System.out.print(admem.getMphone()+"\t");
+                System.out.println(admem.getMname());
 
 
-                boolean result = AdminController.getInstance().memberChange(memberDto);
-                if(result=true){
-                    System.out.println("수정완료");
+                // 회원 정보 수정/삭제 선택
+                System.out.println("===========회원 관리==========");
+                System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 ");
+                System.out.println("선택>");
+                int ch = scanner.nextInt();
+                // 정보 수정===============================================
+                if (ch == 1) {
 
-                }else{
-                    System.out.println("수정실패");
+                    scanner.nextLine();
+                    System.out.print("아이디:");
+                    String id = scanner.nextLine();
+                    System.out.print("비밀번호:");
+                    String pw = scanner.nextLine();
+                    System.out.print("전화번호:");
+                    String phone = scanner.nextLine();
+                    System.out.print("이름:");
+                    String name = scanner.nextLine();
+                    MemberDto memberDto = new MemberDto(mno, id, pw, phone, name);
+
+
+                    boolean result = AdminController.getInstance().memberChange(memberDto);
+                    if (result = true) {
+                        System.out.println("수정완료");
+
+                    } else {
+                        System.out.println("수정실패");
+                    }
+                    AdminRun();
                 }
-                AdminRun();
-            }
-            // 정보 삭제=====================================================
-            else if (ch==2) {
-                System.out.println("삭제");
-                int result= AdminController.getInstance().memberDelete(mno);
-                if(result==1){
-                    System.out.println("회원번호"+mno+"번이 삭제되었습니다.");
-                }else {
-                    System.out.println("삭제 실패");
+                // 정보 삭제=====================================================
+                else if (ch == 2) {
+                    System.out.println("삭제");
+                    int result = AdminController.getInstance().memberDelete(mno);
+                    if (result == 1) {
+                        System.out.println("회원번호" + mno + "번이 삭제되었습니다.");
+                    } else {
+                        System.out.println("삭제 실패");
+                    }
+                    AdminRun();
                 }
-                AdminRun();
+            }else if(admem==null){
+                System.out.println("<안내> 잘못된 회원번호 입니다.");
             }
-        }else{
-                System.out.println("<알림> 잘못된 회원번호 입니다.");
-                return;
-            }
-        }
+
+
    }
 
 
