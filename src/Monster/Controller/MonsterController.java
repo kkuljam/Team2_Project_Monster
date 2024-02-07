@@ -20,28 +20,7 @@ public class MonsterController {
     }
 
 
-    //===============================김건우===============================
-    //----- 출력용 메소드
-    public ArrayList<MonsterListDto> monsterList(){
-        ArrayList<MonsterListDto> result = new ArrayList<>();
-        result = MonsterDao.getInstance().monsterList();
-        return result;
-    }
 
-    public ArrayList<MonsterDto> monsterDtos(){
-        ArrayList<MonsterDto> result = new ArrayList<>();
-        result = MonsterDao.getInstance().monsterDtos();
-        return result;
-    }
-
-
-
-    /*public int findstepno(MonsterListDto monsterListDto){
-        int result = 0;
-        result = MonsterDao.getInstance().findstepno(monsterListDto);
-        return result;
-    }*/
-    //===============================김건우===============================
     
     //===================김민지==========================
     //----- 몬스터 존재 확인 메소드
@@ -83,5 +62,10 @@ public class MonsterController {
         return result;
     }
     //==================================================
+    // ===============================================
+    public boolean dead(int mno){
+        boolean result = MonsterDao.getInstance().dead(mno);
+        return result;
+    }
 }
 

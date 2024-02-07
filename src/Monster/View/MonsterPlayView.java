@@ -40,6 +40,7 @@ public class MonsterPlayView {
             } else if (ch<= eventDtos.size()) {
                 System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno); // 육성 기능 사진 가져오는 메소드
+
                 System.out.println(eImg);
                 try {
                     Thread.sleep(1000);

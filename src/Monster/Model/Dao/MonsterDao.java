@@ -5,6 +5,7 @@ import Monster.Model.Dto.MonsterDto;
 import Monster.Model.Dto.EventDto;
 
 import Monster.Model.Dto.MonsterListDto;
+import Monster.View.MainView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -203,6 +204,7 @@ public class MonsterDao extends Dao {
 
                 int count=ps.executeUpdate();
                 if(count==1){
+                    dead(mno); // 사망 메소드
                     evolution(mno);// 진화 메소드
                     System.out.println(" 이벤트 이미지");
                     return eimg;
@@ -217,94 +219,6 @@ public class MonsterDao extends Dao {
 
     //===============================김건우===============================
 
-    // 몬스터리스트 불러오기 ==============================================================
-    ArrayList<MonsterListDto> mlist = new ArrayList<>();
-
-    public ArrayList<MonsterListDto> monsterList() {
-
-        try {
-
-            // 1. SQL 작성
-            String sql = "select * from monsterlist";
-
-            // 2. SQL 기재한다
-            ps = conn.prepareStatement(sql);
-
-            // 3. SQL 실행한다
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                MonsterListDto monsterListDto = new MonsterListDto();
-                monsterListDto.setLino(rs.getInt("lino"));
-                monsterListDto.setStepno(rs.getInt("stepno"));
-                monsterListDto.setImg(rs.getString("img"));
-                monsterListDto.setIq(rs.getInt("iq"));
-                monsterListDto.setStrong(rs.getInt("strong"));
-                mlist.add(monsterListDto);
-            }
-
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return mlist;
-    }
-
-    ArrayList<MonsterDto> mstat = new ArrayList<>();
-
-
-    // 몬스터 테이블 불러오기 ==============================================================
-    public ArrayList<MonsterDto> monsterDtos() {
-
-
-        try {
-
-            // 1. SQL 작성
-            String sql = "select * from monster";
-
-            // 2. SQL 기재한다
-            ps = conn.prepareStatement(sql);
-
-            // 3. SQL 실행한다
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                MonsterDto monsterDto = new MonsterDto();
-                monsterDto.setMno(rs.getInt("mno"));
-                monsterDto.setNickname(rs.getString("nickname"));
-                monsterDto.setLino(rs.getInt("lino"));
-                monsterDto.setHp(rs.getInt("hp"));
-                monsterDto.setStress(rs.getInt("stress"));
-                monsterDto.setIq(rs.getInt("iq"));
-                monsterDto.setStrong(rs.getInt("strong"));
-                mstat.add(monsterDto);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return mstat;
-    }
-
-    // 리스트넘버가 ? 일때 몬스터리스트 스텝넘버 찾기 ==============================================================
-            int stepno = 0;
-    public int findstepno(MonsterListDto monsterListDto)  {
-
-        try {
-            int result = 0;
-            String sql = "select stepno from monsterlist where lino = ?";
-            ps = conn.prepareStatement( sql );
-            ps.setInt(1 , monsterListDto.getLino());
-            rs = ps.executeQuery();
-            if (rs.next()){
-                stepno = rs.getInt("stepno");
-                return stepno;
-            }
-
-
-        }catch ( Exception e){
-            System.out.println(e);
-        } return 0;
-    }
-
-
     // 진화 메소드 ==============================================================
     public int evolution(int mno) {
         try {
@@ -317,7 +231,7 @@ public class MonsterDao extends Dao {
                 int pluslino = rs.getInt("lino");
                 int miq = rs.getInt("iq");
                 int mstrong = rs.getInt("strong");
-                System.out.println(pluslino);
+
 
 
                 // 몬스터리스트 테이블의 lino 가 ? 일때 iq , strong 값 줘
@@ -331,7 +245,7 @@ public class MonsterDao extends Dao {
                     int pluslino1 = rs.getInt(1);
                     int mliq = rs.getInt(4);
                     int mlstrong = rs.getInt(5);
-                    System.out.println(pluslino1);
+
 
                     if (miq >= mliq && mstrong >= mlstrong) {
                         if (pluslino % 3 != 0) {
@@ -361,20 +275,48 @@ public class MonsterDao extends Dao {
     }
 
     // 사망 메소드 ==============================================================
-    public boolean dead() {
-        for (int i = 0; i < mstat.size(); i++) {
-            if (mstat.get(i).getHp() == 0 || mstat.get(i).getStress() == 100) {
-                System.out.println("사망조건 달성");
-                try {
-                    String sql = "delete from monster where mno = ?";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, "mno");
-                } catch (Exception e) {
-                    System.out.println(e);
+    public boolean dead(int mno){
+        try {
+            String sql = "select mno , hp , stress from monster where mno = ?";
+            System.out.println(mno);
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1 , mno);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int deadmno = rs.getInt(1);
+                int hp = rs.getInt("hp");
+                int stress = rs.getInt("stress");
+                /*System.out.println(deadmno);*/
+                System.out.println(hp);
+                System.out.println(stress);
+
+
+                if (hp <= 0 || stress >= 100) {
+                    String sql2 = "delete from monster where mno = ?";
+                    ps = conn.prepareStatement(sql2);
+                    ps.setInt(1, deadmno);
+                    /*int deadmno1 = deadmno;*/
+                    System.out.println(deadmno);
+                    int count = ps.executeUpdate();
+
+                    if (count == 1) {
+                        System.out.println("사망조건 성공");
+                        MainView.getInstance().mainView();
+                        return true;
+                    }
+
+
                 }
+
+
             }
-        }
-        return false;
+
+        }catch (Exception e){
+            System.out.println("건우"+e);
+        }return false;
+
+
+
     }
 
 
@@ -433,3 +375,22 @@ public class MonsterDao extends Dao {
             }return false;
         }
     }*/
+/*
+public boolean dead() {
+        for (int i = 0; i < mstat.size(); i++) {
+            if (mstat.get(i).getHp() == 0 || mstat.get(i).getStress() == 100) {
+                System.out.println("사망조건 달성");
+                try {
+                    String sql = "delete from monster where mno = ?";
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, "mno");
+                    System.out.println("사망 성공 띠밤");
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+        return false;
+    }
+
+ */
