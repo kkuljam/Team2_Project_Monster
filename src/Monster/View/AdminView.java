@@ -169,8 +169,47 @@ public class AdminView {
             AdminRun();
 
         }
-        else if (ch == 2) {}
-        else if (ch == 3) {}
+        else if (ch == 2) {
+            System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
+            System.out.println("이벤트 명 : "); String ename = scanner.next();
+            System.out.println("이벤트 이미지 " );
+            String eimg = "";
+            try {
+                String str;
+                while (!(str= br.readLine()).equals("")){
+                    eimg += str+"\n";
+                }
+
+            } catch (Exception e){
+                System.out.println(e);
+            }
+            System.out.println("0.hp 1.stress 2.iq 3.strong");
+            System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
+            System.out.println("0.hp 1.stress 2.iq 3.strong");
+            System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
+            System.out.println(eimg);
+            EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
+            boolean result = AdminController.getInstance().eventInsert(eventDto);
+            if( result = true ){
+                System.out.println("추가완료");
+
+            }else{
+                System.out.println("추가실패");
+            }
+            AdminRun();
+        }
+        else if (ch == 3) {
+            System.out.println("삭제할 이벤트 번호 : "); int eno = scanner.nextInt();
+            EventDto eventDto = new EventDto(eno);
+            boolean result=AdminController.getInstance().eventDelete(eventDto);
+            if( result = true ){
+                System.out.println("삭제완료");
+
+            }else{
+                System.out.println("삭제실패");
+            }
+            AdminRun();
+        }
     }
 
     // 몬스터 관리=============================================
@@ -226,6 +265,10 @@ public class AdminView {
     public static void monsterInsert(){
         System.out.println("==============첫번째몬스터 추가================");
         System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
+        while(no%3!=1){
+            System.out.println("적합하지 않은 번호입니다. 3의배수+1의 값을 입력해주세요");
+            return;
+        }
         System.out.println();
         System.out.println("지능:");         int iq =scanner.nextInt();
         System.out.println("힘:");         int strong =scanner.nextInt();

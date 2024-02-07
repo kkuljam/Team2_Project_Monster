@@ -175,7 +175,7 @@ public class AdminDao extends Dao {
     }
 
     // =================================================김건우==================================================================
-    // 몬스터이벤트 수정
+    // 이벤트 수정
     public boolean eventChange(EventDto eventDto){
         try {
             String sql= "update event set ename = ? , eimg = ?, statup = ?, statdown = ? where eno= ?";
@@ -198,4 +198,48 @@ public class AdminDao extends Dao {
     }
 
     // =================================================김건우==================================================================
+
+    public boolean eventInsert(EventDto eventDto){
+        try {
+            String sql= "insert into event value(?,?,?,?,?)";
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1 , eventDto.getEno());
+            ps.setString(2 , eventDto.getEname());
+            ps.setString(3 , eventDto.getEimg());
+            ps.setInt(4 , eventDto.getStatUp());
+            ps.setInt(5 , eventDto.getStatDown());
+
+            int count = ps.executeUpdate();
+
+            if(count == 1){
+                return true;
+            }
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+    public boolean eventDelete(EventDto eventDto){
+        try{
+        String sql="delete from event where eno=?";
+        ps = conn.prepareStatement(sql);
+            ps.setInt(1, eventDto.getEno());
+            int count = ps.executeUpdate();
+            if(count==1) {
+                return true;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
 }
