@@ -131,8 +131,6 @@ public class MemberDao extends Dao{
 
     //비밀번호확인
     public boolean checkPw(MemberDto memberDto){
-        System.out.println("memberDto = " + memberDto);
-
         try {
             //sql작성
             String sql = "select mpw from member where mno = ?";
