@@ -41,6 +41,26 @@ public class AdminDao extends Dao {
         }
         return null;
     }
+    //회원정보확인
+    public boolean checkMem(int mno){
+        try {
+            String sql = "select * from member where mno =?";
+
+            ps= conn.prepareStatement(sql);
+
+            ps.setInt(1,mno);
+
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
 
     // 정보 수정===============================================
     public boolean memberChange(MemberDto memberDto) {

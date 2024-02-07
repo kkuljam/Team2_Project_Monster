@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AdminView {
+
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     //싱글톤
     private AdminView(){}
@@ -64,19 +65,20 @@ public class AdminView {
             System.out.println(memberDtos.get(i).getMname());
         }
         System.out.println("회원번호입력:"); int mno=scanner.nextInt();
-        boolean check ;
+
+
+        boolean check = AdminController.getInstance().checkMem(mno);
+        System.out.println(check);
         for(int i=0; i<memberDtos.size();i++){
-            if(mno==memberDtos.get(i).getMno()) {
+            if(mno==memberDtos.get(i).getMno()&&check==true) {
                 System.out.print(memberDtos.get(i).getMno() + "\t");
                 System.out.print(memberDtos.get(i).getMid() + "\t");
                 System.out.print(memberDtos.get(i).getMpw() + "\t");
                 System.out.print(memberDtos.get(i).getMphone() + "\t");
-                System.out.println(memberDtos.get(i).getMname());
-                check=true;
-            }else {
-                check=false;
+                System.out.println(memberDtos.get(i).getMno());
             }
-            System.out.println(check);
+
+
             if(check==true){
 
         // 회원 정보 수정/삭제 선택
@@ -315,7 +317,7 @@ public class AdminView {
         }else{
             System.out.println("삭제실패");
         }
-    };
+    }
 
 
 

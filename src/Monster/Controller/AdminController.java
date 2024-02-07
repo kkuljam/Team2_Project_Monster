@@ -21,6 +21,11 @@ public class AdminController {
         result = AdminDao.getInstance().MemberPrint(memberDto);
         return result;
     }
+    //회원정보유무
+    public boolean checkMem(int mno){
+        boolean result = AdminDao.getInstance().checkMem(mno);
+        return result;
+    }
 
     // 정보 수정===============================================
     public boolean  memberChange(MemberDto memberDto){
