@@ -48,6 +48,7 @@ public class MonsterController {
          result=MonsterDao.getInstance().monsterExistence(mno);
          return result;
     }
+    //----몬스터 이름 유효성 메소드
     public boolean monstername(String nM){
         if(!nM.equals("")){
             return false;
