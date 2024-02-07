@@ -13,11 +13,15 @@ public class MonsterView {
     private static MonsterView monsterView=new MonsterView();
     public static MonsterView getInstance(){return monsterView;}
     Scanner scanner=new Scanner(System.in);
-    public void gauge(int state,String m ){
-        for (int i = 0; i < (state % 10 > 4 ? state / 10 + 1 : state / 10); i++) {
+
+    public void gauge(int state,String m ){// 게이지 찍는 메소드
+        // 남아있는 게이지
+        int lenght=state % 10 > 4 ? state / 10 + 1 : state / 10;
+        for (int i = 0; i < lenght; i++) {
             System.out.print(m);
         }
-        for (int i = 0; i < 10 - (state % 10 > 4 ? state / 10 + 1 : state / 10); i++) {
+        //없는 칸
+        for (int i = 0; i < 10 -lenght; i++) {
             System.out.print("⬛");
         }
     }
@@ -155,8 +159,6 @@ public class MonsterView {
             System.out.println("\n지능:"+monsterDto1.getIq()+" 힘:"+monsterDto1.getStrong());
             System.out.println(monIng);                     // 몬스터 이미지
             System.out.println("<<"+monsterDto1.getNickname()+">>");  // 몬스터 이름
-
-            // 지능, 힘 숫자
 
             System.out.println("0. 로그아웃");
 
