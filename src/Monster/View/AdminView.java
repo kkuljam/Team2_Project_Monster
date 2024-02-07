@@ -26,9 +26,7 @@ public class AdminView {
 
 
     // 0. 관리자 로그인 성공시 출력
-    public static void main(String[] args) {
-        AdminRun();
-    }
+
     public static void AdminRun(){
         while (true){
             System.out.println("==============관리자 모드=============");
@@ -263,35 +261,34 @@ public class AdminView {
 
     // 몬스터 추가=============================================
     public static void monsterInsert(){
-        System.out.println("==============첫번째몬스터 추가================");
-        System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
-        while(no%3!=1){
+        System.out.println("추가할 몬스터 번호:");
+        int no = scanner.nextInt();
+        while (no % 3 != 1) {
             System.out.println("적합하지 않은 번호입니다. 3의배수+1의 값을 입력해주세요");
-            return;
+            monsterInsert();
         }
-        System.out.println();
-        System.out.println("지능:");         int iq =scanner.nextInt();
-        System.out.println("힘:");         int strong =scanner.nextInt();
-        System.out.println("추가할 이미지:");
-        String mimg = "";
-        try {
-            String str;
-            while (!(str= br.readLine()).equals("")){
-                mimg += str+"\n";
+        for (int i=0;i<3;i++) {
+            System.out.printf("============== %d 번 몬스터 추가================",no+i);
+            System.out.println();
+            System.out.println("지능:");
+            int iq = scanner.nextInt();
+            System.out.println("힘:");
+            int strong = scanner.nextInt();
+            System.out.println("추가할 이미지:");
+            String mimg = "";
+            try {
+                String str;
+                while (!(str = br.readLine()).equals("")) {
+                    mimg += str + "\n";
+                }
+
+            } catch (Exception e) {
+                System.out.println(e);
             }
 
-        } catch (Exception e){
-            System.out.println(e);
-        }
+            MonsterListDto monsterListDto = new MonsterListDto(no+i, mimg, iq, strong);
 
-        MonsterListDto monsterListDto=new MonsterListDto(no,mimg,iq,strong);
-
-        boolean result= AdminController.getInstance().monsterInsert(monsterListDto);
-
-        if(result=true){
-            System.out.println("추가 성공");
-        }else{
-            System.out.println("추가 실패");
+            boolean result = AdminController.getInstance().monsterInsert(monsterListDto);
         }
 
     };
