@@ -126,10 +126,14 @@ public class AdminDao extends Dao {
     //몬스터 리스트 추가
     public boolean monsterInsert(MonsterListDto monsterListDto) {
         try {
+            int stepno=-0;
+            if(monsterListDto.getLino()%3==0){
+                stepno= 3;
+            }else{stepno=monsterListDto.getLino()%3;}
             String sql = "insert into monsterlist values(?,?,?,?,?)";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, monsterListDto.getLino());
-            ps.setInt(2, monsterListDto.getLino()%3);
+            ps.setInt(2, stepno);
             ps.setString(3, monsterListDto.getImg());
             ps.setInt(4, monsterListDto.getIq());
             ps.setInt(5, monsterListDto.getStrong());
