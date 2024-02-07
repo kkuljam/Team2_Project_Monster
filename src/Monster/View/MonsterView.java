@@ -13,11 +13,15 @@ public class MonsterView {
     private static MonsterView monsterView=new MonsterView();
     public static MonsterView getInstance(){return monsterView;}
     Scanner scanner=new Scanner(System.in);
-    public void gauge(int state,String m ){
-        for (int i = 0; i < (state % 10 > 4 ? state / 10 + 1 : state / 10); i++) {
+
+    public void gauge(int state,String m ){// 게이지 찍는 메소드
+        // 남아있는 게이지
+        int lenght=state % 10 > 4 ? state / 10 + 1 : state / 10;
+        for (int i = 0; i < lenght; i++) {
             System.out.print(m);
         }
-        for (int i = 0; i < 10 - (state % 10 > 4 ? state / 10 + 1 : state / 10); i++) {
+        //없는 칸
+        for (int i = 0; i < 10 -lenght; i++) {
             System.out.print("⬛");
         }
     }
@@ -71,26 +75,26 @@ public class MonsterView {
                 System.out.println(nickName+"이(가) 깨어나고 있습니다.");
                 try {
                     System.out.print("\n" +
-                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠄⠂⠠⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡔⠁⠠⠐⠀⠂⠐⠈⢢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠀⠀⠀⣔⠳⠀⠂⠀⠂⠐⠈⢀⢈⢆⢝⢆⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠀⢀⡎⡎⠊⢀⠈⢀⠁⠐⠈⠀⢰⢱⠱⡱⡱⡀⠀⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⢠⠣⠃⠂⢁⢀⢄⠠⠐⠀⢁⠠⠘⢔⢍⢎⢎⢺⠄⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠅⠀⠠⡰⡱⡱⡱⣑⢀⠐⠀⠀⠄⠈⠪⡪⡪⡪⡚⠄⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⢠⠃⢀⠈⡜⡜⢜⢌⢎⢆⠇⠀⡈⠀⠐⠈⠀⡀⠄⠂⠠⠘⡄⠀⠀⠀\n" +
-                            "⠀⠀⠀⣶⣄⠠⠀⡣⡣⡣⡣⡣⡃⠇⠀⠠⠈⢀⢈⢤⢠⢢⢀⠂⠀⢲⠀⠀⠀\n" +
-                            "⠀⠀⢸⠺⣳⣧⡀⠣⡣⡱⡪⢪⠊⢀⣈⡀⢄⢎⢎⢎⢎⢎⣲⠀⢈⠀⡆⠀⠀\n" +
-                            "⠀⠀⡗⡕⠈⠺⣻⣆⡁⠑⢈⠠⣰⠟⠹⢷⡾⣬⡢⡣⡱⡱⡽⡿⣤⡀⢸⠀⠀\n" +
-                            "⠀⢰⡣⠃⢁⠀⠈⠓⣷⣌⢠⠾⠁⠠⠀⠐⡝⢿⣽⢾⣼⢼⠁⠈⠉⠻⢶⡆⠀\n" +
-                            "⠀⡜⠈⠀⠄⢀⡁⡄⡀⠫⠋⠄⠂⠐⠈⠀⠑⡕⡜⡝⢯⠃⢀⠈⠀⠂⠀⢡⠀\n" +
-                            "⠀⡇⠀⠁⢠⢣⢪⢪⢸⢠⠂⠀⠂⠐⠀⢁⠠⠀⢀⠠⠀⠐⠀⡀⠁⡀⠁⢸⠀\n" +
-                            "⠀⠅⢀⠁⢸⢸⢰⢱⠱⡱⣑⠈⠀⠂⠁⢀⠀⠄⠀⠄⠐⠈⠀⡀⠄⢀⠈⡨⠀\n" +
-                            "⠀⠸⠀⠠⠘⢜⢌⢎⢎⢎⡒⠀⠁⠐⠈⠀⡀⠐⠀⠂⠀⠂⠁⠀⡀⠄⢀⠇⠀\n" +
-                            "⠀⠀⢣⠀⠂⠈⠪⠪⡢⠣⠊⢀⠁⠐⠈⠀⡀⠄⢡⢰⢱⢱⢑⢆⠀⠠⠜⠀⠀\n" +
-                            "⠀⠀⠀⠱⡀⠁⠐⢀⠀⠂⠁⢀⠀⡁⢀⠁⢀⢜⢜⢜⢌⢎⢎⢪⢂⠎⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠈⠢⡈⠀⡀⠂⠁⢀⠠⠀⡀⠄⢸⠸⡰⡱⡑⡕⡕⠕⠁⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠀⠈⠒⢄⡠⠈⠀⡀⠠⠀⠠⠐⢕⢕⢕⠵⠑⠁⠀⠀⠀⠀⠀⠀\n" +
-                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠐⠒⠂⠒⠐⠒⠊⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠄⠠⠠⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡔⠁⢀⠐⠀⠄⠐⠈⢢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⣔⠳⠀⠂⠀⠄⠂⠀⠂⢐⢔⠝⣆⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⢀⢎⢖⠁⠂⠈⡀⠄⠂⠁⠈⢰⢱⢱⢱⢱⡀⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⢠⠣⠃⠁⠠⡈⣀⠀⠄⠀⠂⠁⠐⡕⢕⢕⢱⠱⡄⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⡁⠀⠄⡜⡜⡜⡜⢬⠀⡈⢀⠈⢀⠈⠪⡪⡪⡪⡚⠄⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⢠⠁⠠⠐⡸⡸⡨⡪⡪⡪⡂⢀⠠⠀⠄⠐⠀⡀⠄⠂⠠⠘⠄⠀⠀⠀\n" +
+                            "⠀⠀⠀⣾⢷⡄⠀⡇⡇⡕⡕⡜⡜⠔⢀⠀⠠⠀⡂⡡⡠⡢⡀⠂⢀⢱⠀⠀⠀\n" +
+                            "⠀⠀⢰⠻⣟⣿⢦⢑⢕⢕⠕⡕⢅⣮⡿⣧⣔⢜⢜⢜⢜⢜⣼⡮⡀⠀⡆⠀⠀\n" +
+                            "⠀⠀⡗⡕⠈⠫⣿⢷⣁⠑⢁⣖⣿⠓⠛⡿⣾⢷⣕⡕⣕⣽⡾⣟⣷⡄⢸⠀⠀\n" +
+                            "⠀⢰⢕⠕⠀⠂⠈⠛⡿⣶⣻⡯⠃⠀⠄⠈⡝⢿⢽⣟⣾⣳⠃⠉⠫⠿⣶⡆⠀\n" +
+                            "⠀⡘⠠⠀⠂⢐⢀⢄⠈⠹⠋⠀⡀⠂⢀⠁⠸⢸⢩⠫⠿⠅⠀⠄⠂⠀⡈⢡⠀\n" +
+                            "⠀⡇⠀⠐⢠⠣⡣⢣⠣⢥⠐⠀⠠⠐⠀⠀⠂⢀⠀⠄⠂⠐⠀⠄⠂⠠⠀⢸⠀\n" +
+                            "⠀⢂⠀⡁⢸⢸⢸⢸⢸⢑⢕⠀⠂⠀⠂⠁⠈⠀⡀⠄⠐⠀⠂⠠⠐⠀⠐⡈⠀\n" +
+                            "⠀⠘⡀⠀⡘⢜⢌⢎⢪⠪⡪⠀⡀⠁⠄⠁⢈⠀⡀⠠⠐⠀⠁⠠⠀⠂⢁⠃⠀\n" +
+                            "⠀⠀⢡⠀⠄⠈⠪⠪⡪⠪⠊⠀⡀⠐⢀⠈⠀⡀⡠⡰⡢⡣⡣⡢⠐⠀⡜⠀⠀\n" +
+                            "⠀⠀⠀⠡⡐⠈⠀⠄⠀⠂⡀⠁⡀⠐⠀⡀⢁⢔⢕⢕⢱⢑⢕⢕⢁⠎⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠈⠢⡀⠂⠁⠠⠀⠄⠠⠀⠁⡀⢸⢨⢢⢣⢣⠣⡣⠕⠁⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠈⠢⢌⡀⠄⠂⠀⠂⠁⠀⡐⢕⢕⢕⠕⠓⠁⠀⠀⠀⠀⠀⠀\n" +
+                            "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠑⠚⠐⠐⠁⠒⠈⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
                     Thread.sleep(1000);
                     System.out.println("\n" +
                             "⣿⣿⣿⣮⡊⡪⡻⣿⣿⣿⣿⣿⣿⣷⡄⠀⠙⣿⣧⠀⠠⠀⢻⣧⠀⠨⣿⣿⣗⠕⡍⣿⣿⣿⡯⡊⡾⣿⣿⣿⣿⠇⢀⣿⡿⠀⠠⠀⢠⡟⠀⢠⣾⣿⣿⣿⣿⣿⡟⢇⣷⣿⣿⣿⣿⣿⣿⣿\n" +
@@ -127,7 +131,7 @@ public class MonsterView {
                             "⢀⣴⢿⣿⣿⢫⢱⢼⣾⣿⠟⡜⣸⣾⣻⣿⣟⣿⡿⠁⢂⣼⣿⡏⠀⠄⣸⣿⡿⠀⣺⣿⢘⢜⣿⣻⡅⡇⢆⢿⣿⣟⣿⡄⠐⠈⣧⠀⠂⡀⠈⢻⣧⠐⠀⠄⠘⢿⣿⣷⣿⣿⣷⣕⠕⡜⡹⢿\n" +
                             "⣿⣾⣿⠻⣐⣵⣿⣿⡿⢣⢃⣷⢿⣻⣿⣿⣿⣿⠃⢁⣴⣿⣟⠀⡀⢢⣿⣿⡫⠀⢾⣗⢕⢱⣿⣿⡇⡎⡪⣹⣿⣿⣿⣿⠀⠐⠘⣧⡁⢀⠈⠈⢿⣷⡁⡀⠂⡀⠻⣿⣿⣿⣿⣿⢷⣕⠜⡌\n" +
                             "⣿⢟⠜⣜⣾⣿⣿⠟⡜⣸⣾⣿⣿⣿⣿⣿⣿⡗⢀⣾⣟⣯⠇⢀⠀⣾⣿⣿⠂⠠⣿⣗⢅⢳⣿⣿⡧⡣⡱⡸⣿⣿⣿⣿⣧⠈⠀⢽⣷⡀⢀⠁⡈⣿⣿⣄⠄⠠⠀⠚⣿⣿⣿⣿⢿⣿⣷⣕\n");
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
@@ -156,8 +160,6 @@ public class MonsterView {
             System.out.println(monIng);                     // 몬스터 이미지
             System.out.println("<<"+monsterDto1.getNickname()+">>");  // 몬스터 이름
 
-            // 지능, 힘 숫자
-
             System.out.println("0. 로그아웃");
 
             //이벤트 선택지 출력할 메소드
@@ -170,14 +172,14 @@ public class MonsterView {
             int ch=scanner.nextInt();
 
             if(ch==0){
-                MemberController.getInstance().logOut();
-                MainView.getInstance().mainView();
+                MemberController.getInstance().logOut(); //로그아웃
+                MainView.getInstance().mainView(); // 메인으로 보내기
             } else if (ch<= eventDtos.size()) {
                 System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno);
                 System.out.println(eImg);
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 }catch (Exception e){
                     System.out.println(e);
                 }
