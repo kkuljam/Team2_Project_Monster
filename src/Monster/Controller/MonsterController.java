@@ -10,15 +10,11 @@ import java.util.ArrayList;
 
 public class MonsterController {
     public String[]stat={"hp","stress","iq","strong"};
-    private MonsterController() {
-    }
-    ;
+    private MonsterController() {}    ;
     private static MonsterController monsterController = new MonsterController();
-
     public static MonsterController getInstance() {
         return monsterController;
     }
-
 
     //===============================김건우===============================
     //----- 출력용 메소드

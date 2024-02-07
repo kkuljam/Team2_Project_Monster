@@ -68,8 +68,6 @@ public class MonsterDao extends Dao {
             if (count == 1) {
                 return true;
             }// 만약에 insert 처리된 레코드가 1개면 회원가입 성공
-
-
         } catch (Exception e) {
             System.out.println(e + "생성");
         }
@@ -97,7 +95,6 @@ public class MonsterDao extends Dao {
         } catch (Exception e) {
             System.out.println(e);
         }
-
         return null;
     }
     //---- 몬스터 정보 출력 메소드
@@ -139,9 +136,6 @@ public class MonsterDao extends Dao {
         }
         return null;
     }
-
-
-
 
     //-- 이벤트 실행 및 이미지 반환 메소드
     public String eventExecution(int ch, int mno){
