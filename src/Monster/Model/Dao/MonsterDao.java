@@ -203,13 +203,13 @@ public class MonsterDao extends Dao {
 
                 int count=ps.executeUpdate();
                 if(count==1){
-                    /*evolution();*/// 진화 메소드
+                    evolution(mno);// 진화 메소드
                     System.out.println(" 이벤트 이미지");
                     return eimg;
                 }
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("민지"+e);
         }
         return null;
     }
@@ -304,26 +304,50 @@ public class MonsterDao extends Dao {
         } return 0;
     }
 
+
     // 진화 메소드 ==============================================================
-    public int evolution(MonsterDto monsterDto) {
+    public int evolution(int mno) {
         try {
-            String sql = "select lino from monster where mno = ?";
+            // 몬스터 테이블의 mno 가 ? 일때 lino iq strong 값 줘
+            String sql = "select lino , iq , strong from monster where mno = ?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1 , monsterDto.getMno());
+            ps.setInt(1 , mno);
             rs = ps.executeQuery();
             int pluslino = rs.getInt("lino");
+            int miq = rs.getInt("iq");
+            int mstrong = rs.getInt("strong");
             System.out.println( pluslino );
 
-            /*if (pluslino == monsterDto.getLino())*/
-            String sql1 = "update monster set lino = ? where mno = ?";
-            ps = conn.prepareStatement(sql1);
-            ps.setInt(1 , pluslino+1);
-            ps.setInt(2 , monsterDto.getMno());
-            int pluslino1 = ps.executeUpdate();
+            // 몬스터리스트 테이블의 lino 가 ? 일때 iq , strong 값 줘
+            String sql2 = "select iq , strong from monsterlist where lino = ?";
+            ps = conn.prepareStatement(sql2);
+            ps.setInt(1,pluslino+1);
+            rs = ps.executeQuery();
+            int pluslino1 = rs.getInt("lino");
+            int mliq = rs.getInt("iq");
+            int mlstrong = rs.getInt("strong");
 
-           return pluslino1;
+            if ( miq >= mliq && mstrong >= mlstrong){
+                if ( pluslino % 3 != 0){
+                    String sql3 = "update monster set lino = ? where mno = ?";
+                    ps = conn.prepareStatement(sql3);
+                    ps.setInt(1,pluslino1);
+                    ps.setInt(2,mno);
+                    int count = ps.executeUpdate();
+                    if ( count == 1){
+                        System.out.println("진화조건 성공");
+                        return pluslino1;
+                    }
+                }
+            }
+
+
+
+
+
+
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("건우"+e);
         }
         return 0;
     }
