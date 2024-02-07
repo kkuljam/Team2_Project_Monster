@@ -116,6 +116,7 @@ public class MonsterView {
             MonsterDto monsterDto1=MonsterController.getInstance().monsterPrint(mno);
             // 찾은 진화단계로 진화 이미지 불러오기
             int level=monsterDto1.getLino(); // 진화 단계 저장
+            System.out.println("ㅓㅗㅗㅗㅓㅗㅓㅗㅓㅗㅓㅗㅓㅗㅓ:"+level);
             String monIng=MonsterController.getInstance().monsterImg(level);// 진화 이미지 출력 메소드
 
             // 체력, 스트레스 게이지
@@ -145,8 +146,9 @@ public class MonsterView {
             if(ch==0){
                 // 로그아웃 메소드
             } else if (ch<= eventDtos.size()) {
+                System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno);
-                System.out.println(eImg);
+                System.out.println("호호호호호호호:"+eImg);
 
                 // 기능 메소드
             }
