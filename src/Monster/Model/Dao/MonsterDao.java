@@ -313,35 +313,43 @@ public class MonsterDao extends Dao {
             ps = conn.prepareStatement(sql);
             ps.setInt(1 , mno);
             rs = ps.executeQuery();
-            int pluslino = rs.getInt("lino");
-            int miq = rs.getInt("iq");
-            int mstrong = rs.getInt("strong");
-            System.out.println( pluslino );
+            if (rs.next()) {
+                int pluslino = rs.getInt("lino");
+                int miq = rs.getInt("iq");
+                int mstrong = rs.getInt("strong");
+                System.out.println(pluslino);
 
-            // 몬스터리스트 테이블의 lino 가 ? 일때 iq , strong 값 줘
-            String sql2 = "select iq , strong from monsterlist where lino = ?";
-            ps = conn.prepareStatement(sql2);
-            ps.setInt(1,pluslino+1);
-            rs = ps.executeQuery();
-            int pluslino1 = rs.getInt("lino");
-            int mliq = rs.getInt("iq");
-            int mlstrong = rs.getInt("strong");
 
-            if ( miq >= mliq && mstrong >= mlstrong){
-                if ( pluslino % 3 != 0){
-                    String sql3 = "update monster set lino = ? where mno = ?";
-                    ps = conn.prepareStatement(sql3);
-                    ps.setInt(1,pluslino1);
-                    ps.setInt(2,mno);
-                    int count = ps.executeUpdate();
-                    if ( count == 1){
-                        System.out.println("진화조건 성공");
-                        return pluslino1;
+                // 몬스터리스트 테이블의 lino 가 ? 일때 iq , strong 값 줘
+                String sql2 = "select * from monsterlist where lino = ?";
+
+                ps = conn.prepareStatement(sql2);
+
+                ps.setInt(1, (pluslino+1));
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    int pluslino1 = rs.getInt(1);
+                    int mliq = rs.getInt(4);
+                    int mlstrong = rs.getInt(5);
+                    System.out.println(pluslino1);
+
+                    if (miq >= mliq && mstrong >= mlstrong) {
+                        if (pluslino % 3 != 0) {
+                            String sql3 = "update monster set lino = ? where mno = ?";
+                            ps = conn.prepareStatement(sql3);
+                            ps.setInt(1, pluslino1);
+                            ps.setInt(2, mno);
+                            int count = ps.executeUpdate();
+
+                            if (count == 1) {
+                                System.out.println("진화조건 성공");
+                                return 1;
+                            }
+
+                        }
                     }
                 }
             }
-
-
 
 
 
