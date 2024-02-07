@@ -42,7 +42,7 @@ public class MonsterPlayView {
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno); // 육성 기능 사진 가져오는 메소드
                 System.out.println(eImg);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 }catch (Exception e){
                     System.out.println(e);
                 }
