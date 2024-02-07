@@ -66,7 +66,7 @@ public class MonsterView {
 
             // 이름 보내면서 난수 생성하고 그걸로 몬스터 정해주기
             boolean go=MonsterController.getInstance().monsterRandom(nickName,mno);
-            System.out.println("몬스터 이름"+nickName);
+            //System.out.println("몬스터 이름"+nickName);
             if(go){
                 System.out.println(nickName+"이(가) 깨어나고 있습니다.");
                 try {
@@ -173,6 +173,7 @@ public class MonsterView {
                 MemberController.getInstance().logOut();
                 MainView.getInstance().mainView();
             } else if (ch<= eventDtos.size()) {
+                System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno);
                 System.out.println(eImg);
                 try {

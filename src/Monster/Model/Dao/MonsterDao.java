@@ -139,6 +139,10 @@ public class MonsterDao extends Dao {
         }
         return null;
     }
+
+
+
+
     //-- 이벤트 실행 및 이미지 반환 메소드
     public String eventExecution(int ch, int mno){
         try {
@@ -196,9 +200,10 @@ public class MonsterDao extends Dao {
                 ps.setInt(2, downR); // 합친 숫자
                 ps.setInt(3, mno);
 
+
                 int count=ps.executeUpdate();
                 if(count==1){
-                    evolution();// 진화 메소드
+                    /*evolution();*/// 진화 메소드
                     System.out.println(" 이벤트 이미지");
                     return eimg;
                 }
@@ -246,6 +251,7 @@ public class MonsterDao extends Dao {
 
     ArrayList<MonsterDto> mstat = new ArrayList<>();
 
+
     // 몬스터 테이블 불러오기 ==============================================================
     public ArrayList<MonsterDto> monsterDtos() {
 
@@ -277,7 +283,7 @@ public class MonsterDao extends Dao {
         return mstat;
     }
 
-    // 몬스터리스트 스텝넘버 찾기 ==============================================================
+    // 리스트넘버가 ? 일때 몬스터리스트 스텝넘버 찾기 ==============================================================
             int stepno = 0;
     public int findstepno(MonsterListDto monsterListDto)  {
 
@@ -299,34 +305,27 @@ public class MonsterDao extends Dao {
     }
 
     // 진화 메소드 ==============================================================
-    public boolean evolution() {
-        while (true) {
-                // 몬스터리스트 테이블 배열 i , 몬스터 테이블 배열 j
-            for (int i = 0; i < mlist.size(); i++) {
-//                System.out.println(mlist.get(i).getLino());
-                for (int j = 0; j < mstat.size(); j++) {
-//                    System.out.println(mstat.get(j).getLino());
-                    // 만약에 몬스터리스트의 리스트넘버랑 몬스터의 리스트넘버랑 같고
-                    // 몬스터리스트의 지능 과 힘이 몬스터의 지능과 힘보다 같거나 작으면 진화조건 달성
-                    if (mlist.get(i).getLino() == mstat.get(j).getLino() && stepno != 3) {
-                        if (mlist.get(i).getIq() <= mstat.get(j).getIq() && mlist.get(i).getStrong() <= mstat.get(j).getStrong()) {
-                            System.out.println("진화조건 달성");
-                            int newlino =mstat.get(j).getLino();
-                            // 뉴 리스트넘버에 몬스터테이블의 리스트넘버를 대입하고
-                            try {
-                                // 진화 조건달성시 데이터베이스 lino 1 추가
-                                String sql = "update monster set lino = ? where lino = ? ";
-                                ps=conn.prepareStatement(sql);
-                                ps.setInt(1 , newlino+1);
-                                ps.setInt(2,newlino);
-                            }catch ( Exception e){
-                                System.out.println(e);
-                            }
-                        }
-                    }
-                }
-            }return false;
+    public int evolution(MonsterDto monsterDto) {
+        try {
+            String sql = "select lino from monster where mno = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1 , monsterDto.getMno());
+            rs = ps.executeQuery();
+            int pluslino = rs.getInt("lino");
+            System.out.println( pluslino );
+
+            /*if (pluslino == monsterDto.getLino())*/
+            String sql1 = "update monster set lino = ? where mno = ?";
+            ps = conn.prepareStatement(sql1);
+            ps.setInt(1 , pluslino+1);
+            ps.setInt(2 , monsterDto.getMno());
+            int pluslino1 = ps.executeUpdate();
+
+           return pluslino1;
+        } catch (Exception e) {
+            System.out.println(e);
         }
+        return 0;
     }
 
     // 사망 메소드 ==============================================================
@@ -346,6 +345,7 @@ public class MonsterDao extends Dao {
         return false;
     }
 
+
     //===============================김건우=====================================================================================
 
 
@@ -359,3 +359,45 @@ public class MonsterDao extends Dao {
 
 
 
+  /*public boolean evolution() {
+        System.out.println(mstat.toString());
+        while (true) {
+
+            // 몬스터리스트 테이블 배열 i , 몬스터 테이블 배열 j
+            for (int i = 0; i < mlist.size(); i++) {
+//                System.out.println(mlist.get(i).getLino());
+                for (int j = 0; j < mstat.size(); j++) {
+//                    System.out.println(mstat.get(j).getLino());
+                    // 만약에 몬스터리스트의 리스트넘버랑 몬스터의 리스트넘버랑 같고
+                    // 몬스터리스트의 지능 과 힘이 몬스터의 지능과 힘보다 같거나 작으면 진화조건 달성
+                    System.out.println(mstat.size());
+                    if (mlist.get(i).getLino() == mstat.get(j).getLino() && stepno != 3) {
+                        if (mlist.get(i).getIq() <= mstat.get(j).getIq() && mlist.get(i).getStrong() <= mstat.get(j).getStrong()) {
+                            System.out.println("진화조건 달성");
+                            *//*int newlino =mstat.get(j).getLino();*//*
+                            int newlino1 =mstat.get(j).getLino()+1;
+                            System.out.println(newlino1);
+                            // 뉴 리스트넘버에 몬스터테이블의 리스트넘버를 대입하고
+                            try {
+                                // 진화 조건달성시 데이터베이스 lino 1 추가
+                                String sql = "update monster set lino = ? where mno = ? ";
+                                ps=conn.prepareStatement(sql);
+                                ps.setInt(1 , newlino1);
+                                ps.setInt(2, mstat.get(j).getMno());
+
+                                int count = ps.executeUpdate();
+                                if (count == 1) {
+                                    System.out.println("진화 완료: 새로운 lino = " + newlino1);
+                                    return true; // 진화가 성공하면 true 반환
+                                } else {
+                                    System.out.println("진화에 실패하였습니다.");
+                                }
+                            } catch (Exception e) {
+                                System.out.println("진화 중 오류 발생: " + e.getMessage());
+                            }
+                        }
+                    }
+                }
+            }return false;
+        }
+    }*/
