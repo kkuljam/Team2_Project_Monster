@@ -67,7 +67,7 @@ public class MemberView {
                 System.out.println("1.플레이 2.설정");
                 int ch = scanner.nextInt();
                 if (ch == 1){
-                    MonsterView.getInstance().run();
+                    MonsterPlayView.getInstance().run();
                 } else if (ch==2) {
                     login = SettingView.getInstance().set();
                 } else {
