@@ -52,6 +52,12 @@ public class MemberView {
         System.out.print("비밀번호 : ");
         String pw = scanner.next();
 
+        if(id.equals("admin")){
+            if (pw.equals("admin")){
+                AdminView.AdminRun();
+            }
+        }
+
         //객체화
         MemberDto memberDto = new MemberDto();
         memberDto.setMid(id);

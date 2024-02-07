@@ -1,6 +1,7 @@
 package Monster.Controller;
 
 import Monster.Model.Dao.AdminDao;
+import Monster.Model.Dao.MemberDao;
 import Monster.Model.Dto.EventDto;
 import Monster.Model.Dto.MemberDto;
 import Monster.Model.Dto.MonsterDto;
@@ -20,9 +21,11 @@ public class AdminController {
         result = AdminDao.getInstance().MemberPrint(memberDto);
         return result;
     }
+
     // 정보 수정===============================================
     public boolean  memberChange(MemberDto memberDto){
         boolean result =false;
+
         result=AdminDao.getInstance().memberChange(memberDto);
 
         return result;
@@ -31,7 +34,7 @@ public class AdminController {
     public int  memberDelete(int mno){
         int result =0;
         result=AdminDao.getInstance().memberDelete(mno);
-
+        System.out.println(result);
         return result;
     }
     // 몬스터리스트 출력

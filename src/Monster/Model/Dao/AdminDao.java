@@ -41,6 +41,7 @@ public class AdminDao extends Dao {
         }
         return null;
     }
+
     // 정보 수정===============================================
     public boolean memberChange(MemberDto memberDto) {
         try {
