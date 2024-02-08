@@ -69,18 +69,28 @@ public class AdminController {
         boolean result=AdminDao.getInstance().monsterDelete(monsterListDto);
     return result;
     }
+    //이벤트리스트 출력
+    public ArrayList<EventDto>eventListPrint(EventDto eventDto){
 
+        ArrayList<EventDto>result= null;
+        result=AdminDao.getInstance().eventListPrint(eventDto);
+        return result;
+    }
 
     // =================================================김건우==================================================================
+    // 이벤트 수정
     public boolean eventChange(EventDto eventDto){
         boolean result = AdminDao.getInstance().eventChange(eventDto);
         return result;
     }
     // =================================================김건우==================================================================
+
+    // 이벤트 추가
     public boolean eventInsert(EventDto eventDto){
         boolean result = AdminDao.getInstance().eventInsert(eventDto);
         return result;
     }
+    // 이벤트 삭제
     public boolean eventDelete(EventDto eventDto){
         boolean result = AdminDao.getInstance().eventDelete(eventDto);
         return result;
