@@ -223,6 +223,30 @@ public class AdminDao extends Dao {
         return false;
     }
 
+    // 이벤트 리스트 출력
+    public ArrayList<EventDto>eventListPrint(EventDto eventDto){
+        try {
+            String sql = "select * from event";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            ArrayList<EventDto> eventDtos = new ArrayList<>();
+            while (rs.next()) {
+                EventDto dto = new EventDto();
+                dto.setEno(rs.getInt("eno"));
+                dto.setEname(rs.getString("ename"));
+                dto.setEimg(rs.getString("eimg"));
+                dto.setStatUp(rs.getInt("statup"));
+                dto.setStatDown(rs.getInt("statdown"));
+                eventDtos.add(dto);
+            }
+            return eventDtos;
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     // =================================================김건우==================================================================
     // 이벤트 수정
     public boolean eventChange(EventDto eventDto){
