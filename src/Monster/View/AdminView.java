@@ -29,7 +29,7 @@ public class AdminView {
 
     public static void AdminRun(){
         while (true){
-            System.out.println("==============관리자 모드=============");
+            System.out.println("============================관리자 모드============================");
             System.out.println("1. 회원관리 2. 육성관리 3. 로그아웃");
             System.out.println("선택>"); int ch= scanner.nextInt();
 
@@ -54,7 +54,7 @@ public class AdminView {
     //회원관리 화면
     public static void MemberManagement(){
         // 회원관리====================================================
-        System.out.println("===========회원 관리==========");
+        System.out.println("============================회원 관리============================");
         ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
         for (int i=0;i<memberDtos.size();i++){
             System.out.print(memberDtos.get(i).getMno()+"\t");
@@ -80,7 +80,7 @@ public class AdminView {
             if(check==true){
 
         // 회원 정보 수정/삭제 선택
-            System.out.println("===========회원 관리==========");
+            System.out.println("============================회원 관리============================");
             System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 ");
             System.out.println("선택>"); int ch= scanner.nextInt();
             // 정보 수정===============================================
@@ -125,7 +125,7 @@ public class AdminView {
 
    // 육성관리==============================================
    public static void FosterManagement(){
-       System.out.println("===========육성 관리==========");
+       System.out.println("============================육성 관리============================");
        System.out.println("1.기능 2. 몬스터 ");
        System.out.println("선택>"); int ch= scanner.nextInt();
        if(ch==1){
@@ -145,7 +145,7 @@ public class AdminView {
     public static void FuntionManagement(){
 
 
-        System.out.println("===========이벤트 관리==========");
+        System.out.println("============================이벤트 관리============================");
         System.out.println("1.이벤트 정보 수정 2.이벤트 추가 3.이벤트 삭제");
         System.out.println("선택>"); int ch=scanner.nextInt();
         if (ch == 1){
@@ -230,7 +230,7 @@ public class AdminView {
             System.out.print("지능:"+monsterlistDtos.get(i).getIq()+"\t");
             System.out.println("힘:"+monsterlistDtos.get(i).getStrong()+"\t");
         }
-        System.out.println("===========몬스터리스트 관리==========");
+        System.out.println("============================몬스터리스트 관리============================");
         System.out.println("1. 몬스터 정보 수정 2. 몬스터 추가 3. 몬스터 삭제 ");
         System.out.println("선택>"); int ch=scanner.nextInt();
 
@@ -241,7 +241,7 @@ public class AdminView {
     }
     // 몬스터 수정=============================================
     public static void monsterUpdate(){
-        System.out.println("==============몬스터 수정================");
+        System.out.println("============================몬스터 수정============================");
         System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         System.out.println("지능:");         int iq =scanner.nextInt();
         System.out.println("힘:");         int strong =scanner.nextInt();
@@ -279,7 +279,7 @@ public class AdminView {
             monsterInsert();
         }
         for (int i=0;i<3;i++) {
-            System.out.printf("============== %d 번 몬스터 추가================",no+i);
+            System.out.printf("============================%d 번 몬스터 추가============================",no+i);
             System.out.println();
             System.out.println("지능:");
             int iq = scanner.nextInt();
@@ -306,7 +306,7 @@ public class AdminView {
 
     // 몬스터 삭제=============================================
     public static void monsterDelete(){
-        System.out.println("==============몬스터 삭제================");
+        System.out.println("============================몬스터 수정============================");
         System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         MonsterListDto monsterListDto=new MonsterListDto(no);
         boolean result=AdminController.getInstance().monsterDelete(monsterListDto);

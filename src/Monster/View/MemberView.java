@@ -17,7 +17,7 @@ public class MemberView {
     //1.회원가입
     public void signup(){
         //입력받기
-        System.out.println("============회원가입============");
+        System.out.println("==============================회원가입==============================");
         System.out.print("아이디 : ");
         String id = scanner.next();
         System.out.print("비밀번호 : ");
@@ -44,7 +44,7 @@ public class MemberView {
 
     //로그인
     public void login(){
-        System.out.println("============로그인============");
+        System.out.println("==============================로그인==============================");
 
         //입력받기
         System.out.print("아이디 : ");
@@ -69,7 +69,7 @@ public class MemberView {
         boolean login =true;
         while ( login ){
             if(result == 1){
-                System.out.println("============몬스터키우기============");
+                System.out.println("============================몬스터키우기===========================");
                 System.out.println("1.플레이 2.설정");
                 int ch = scanner.nextInt();
                 if (ch == 1){

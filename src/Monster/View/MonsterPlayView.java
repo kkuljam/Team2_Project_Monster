@@ -41,8 +41,24 @@ public class MonsterPlayView {
                 System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno); // 육성 기능 사진 가져오는 메소드
 
-                System.out.println(eImg);
+                if( eImg.equals("dead") ){
+
+                    System.out.println("                                                                         \n" +
+                                    "                                                                         \n" +
+                                    "   __        __       ___ ___       __     ___    __  __     __    _ __  \n" +
+                                    " /'_ `\\    /'__`\\   /' __` __`\\   /'__`\\  / __`\\ /\\ \\/\\ \\  /'__`\\ /\\`'__\\\n" +
+                                    "/\\ \\L\\ \\  /\\ \\L\\.\\_ /\\ \\/\\ \\/\\ \\ /\\  __/ /\\ \\L\\ \\\\ \\ \\_/ |/\\  __/ \\ \\ \\/ \n" +
+                                    "\\ \\____ \\ \\ \\__/.\\_\\\\ \\_\\ \\_\\ \\_\\\\ \\____\\\\ \\____/ \\ \\___/ \\ \\____\\ \\ \\_\\ \n" +
+                                    " \\/___L\\ \\ \\/__/\\/_/ \\/_/\\/_/\\/_/ \\/____/ \\/___/   \\/__/   \\/____/  \\/_/ \n" +
+                                    "   /\\____/                                                               \n" +
+                                    "   \\_/__/                                                                "
+                            );
+                    return;
+
+                }
+
                 try {
+
                     Thread.sleep(1000);
                 }catch (Exception e){
                     System.out.println(e);

@@ -6,6 +6,7 @@ import Monster.Model.Dto.EventDto;
 
 import Monster.Model.Dto.MonsterListDto;
 import Monster.View.MainView;
+import Monster.View.MemberView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -204,7 +205,7 @@ public class MonsterDao extends Dao {
 
                 int count=ps.executeUpdate();
                 if(count==1){
-                    dead(mno); // 사망 메소드
+                    if( dead(mno) ){ return eimg="dead"; } ; // 사망 메소드
                     evolution(mno);// 진화 메소드
                     System.out.println(" 이벤트 이미지");
                     return eimg;
@@ -233,13 +234,12 @@ public class MonsterDao extends Dao {
                 int mstrong = rs.getInt("strong");
 
 
-
                 // 몬스터리스트 테이블의 lino 가 ? 일때 iq , strong 값 줘
                 String sql2 = "select * from monsterlist where lino = ?";
 
                 ps = conn.prepareStatement(sql2);
 
-                ps.setInt(1, (pluslino+1));
+                ps.setInt(1, (pluslino + 1));
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     int pluslino1 = rs.getInt(1);
@@ -256,7 +256,15 @@ public class MonsterDao extends Dao {
                             int count = ps.executeUpdate();
 
                             if (count == 1) {
-                                System.out.println("진화조건 성공");
+                                System.out.println("                          ___                __                               __     \n" +
+                                        "                         /\\_ \\              /\\ \\__    __                     /\\ \\    \n" +
+                                        "   __    __  __    ___   \\//\\ \\     __  __  \\ \\ ,_\\  /\\_\\     ___     ___    \\ \\ \\   \n" +
+                                        " /'__`\\ /\\ \\/\\ \\  / __`\\   \\ \\ \\   /\\ \\/\\ \\  \\ \\ \\/  \\/\\ \\   / __`\\ /' _ `\\   \\ \\ \\  \n" +
+                                        "/\\  __/ \\ \\ \\_/ |/\\ \\L\\ \\   \\_\\ \\_ \\ \\ \\_\\ \\  \\ \\ \\_  \\ \\ \\ /\\ \\L\\ \\/\\ \\/\\ \\   \\ \\_\\ \n" +
+                                        "\\ \\____\\ \\ \\___/ \\ \\____/   /\\____\\ \\ \\____/   \\ \\__\\  \\ \\_\\\\ \\____/\\ \\_\\ \\_\\   \\/\\_\\\n" +
+                                        " \\/____/  \\/__/   \\/___/    \\/____/  \\/___/     \\/__/   \\/_/ \\/___/  \\/_/\\/_/    \\/_/\n" +
+                                        "                                                                                     \n" +
+                                        "                                                                                     ");
                                 return 1;
                             }
 
@@ -286,9 +294,7 @@ public class MonsterDao extends Dao {
                 int deadmno = rs.getInt(1);
                 int hp = rs.getInt("hp");
                 int stress = rs.getInt("stress");
-                /*System.out.println(deadmno);*/
-                System.out.println(hp);
-                System.out.println(stress);
+
 
 
                 if (hp <= 0 || stress >= 100) {
@@ -296,12 +302,9 @@ public class MonsterDao extends Dao {
                     ps = conn.prepareStatement(sql2);
                     ps.setInt(1, deadmno);
                     /*int deadmno1 = deadmno;*/
-                    System.out.println(deadmno);
                     int count = ps.executeUpdate();
 
                     if (count == 1) {
-                        System.out.println("사망조건 성공");
-                        MainView.getInstance().mainView();
                         return true;
                     }
 
