@@ -163,7 +163,7 @@ public class MonsterDao extends Dao {
                 }
                 System.out.println("올라갈 스탯 "+upStat+"숫자 "+upR);
                 //4. 두번째 이름 -난수 / but 만약 2번이면 부호 반대로
-                int downR=((int) (Math.random() * 4) + 1)*-1;
+                int downR=((int) (Math.random() * 9) + 3)*-1;
                 if(down==2){
                     downR*=-1;
                 }
