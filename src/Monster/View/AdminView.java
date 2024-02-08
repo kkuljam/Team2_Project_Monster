@@ -23,14 +23,14 @@ public class AdminView {
 
     public static  AdminView getInstance(){return adminView;}
 
-     static Scanner scanner =new Scanner(System.in);
+    static Scanner scanner =new Scanner(System.in);
 
 
     // 0. 관리자 로그인 성공시 출력
 
     public static void AdminRun(){
         while (true){
-            System.out.println("==============관리자 모드=============");
+            System.out.println("============================관리자 모드============================");
             System.out.println("1. 회원관리 2. 육성관리 3. 로그아웃");
             System.out.println("선택>"); int ch= scanner.nextInt();
 
@@ -55,8 +55,7 @@ public class AdminView {
     //회원관리 화면
     public static void MemberManagement(){
         // 회원관리====================================================
-        while (true){
-        System.out.println("===========회원 관리==========");
+        System.out.println("============================회원 관리============================");
         ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
         for (int i=0;i<memberDtos.size();i++){
             System.out.print(memberDtos.get(i).getMno()+"\t");
@@ -70,17 +69,18 @@ public class AdminView {
         MemberDto admem = AdminController.getInstance().memprin(mno);
 
 
-            if(admem!=null) {
+        if(admem!=null) {
 
-                System.out.print(admem.getMno()+"\t");
-                System.out.print(admem.getMid()+"\t");
-                System.out.print(admem.getMpw()+"\t");
-                System.out.print(admem.getMphone()+"\t");
-                System.out.println(admem.getMname());
+            System.out.print(admem.getMno()+"\t");
+            System.out.print(admem.getMid()+"\t");
+            System.out.print(admem.getMpw()+"\t");
+            System.out.print(admem.getMphone()+"\t");
+            System.out.println(admem.getMname());
 
 
-                // 회원 정보 수정/삭제 선택
-                System.out.println("===========회원 관리==========");
+
+            // 회원 정보 수정/삭제 선택
+            System.out.println("============================회원 관리============================");
                 System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 3.뒤로 가기");
                 System.out.println("선택>");
                 int ch = scanner.nextInt();
@@ -126,15 +126,15 @@ public class AdminView {
                 System.out.println("<안내> 잘못된 회원번호 입니다.");
             }
 
-}
-   }
+        }
+    }
 
 
 
-   // 육성관리==============================================
-   public static void FosterManagement(){
+    // 육성관리==============================================
+    public static void FosterManagement(){
         while (true) {
-            System.out.println("===========육성 관리==========");
+            System.out.println("============================육성 관리============================");
             System.out.println("1.기능 2. 몬스터 3.뒤로 가기 ");
             System.out.println("선택>");
             int ch = scanner.nextInt();
@@ -152,96 +152,97 @@ public class AdminView {
 
    }
 
-   // 기능 관리==============================================
+    // 기능 관리==============================================
     public static void FuntionManagement(){
         while (true){
-        ArrayList<EventDto> eventDtos = AdminController.getInstance().eventListPrint(new EventDto());
-        for (int i=0;i<eventDtos.size();i++){
-            System.out.print("기능 번호:"+eventDtos.get(i).getEno()+"\t");
-            System.out.print("기능 이름:"+eventDtos.get(i).getEname()+"\t");
-            //System.out.print("기능 이미지:"+eventDtos.get(i).getEimg()+"\t");
-            System.out.print("상승 스탯:"+eventDtos.get(i).getStatUp()+"\t");
-            System.out.println("하락 스탯:"+eventDtos.get(i).getStatDown()+"\t");
-        }
+            ArrayList<EventDto> eventDtos = AdminController.getInstance().eventListPrint(new EventDto());
+            for (int i=0;i<eventDtos.size();i++){
+                System.out.print("기능 번호:"+eventDtos.get(i).getEno()+"\t");
+                System.out.print("기능 이름:"+eventDtos.get(i).getEname()+"\t");
+                //System.out.print("기능 이미지:"+eventDtos.get(i).getEimg()+"\t");
+                System.out.print("상승 스탯:"+eventDtos.get(i).getStatUp()+"\t");
+                System.out.println("하락 스탯:"+eventDtos.get(i).getStatDown()+"\t");
+            }
 
-        System.out.println("===========이벤트 관리==========");
-        System.out.println("1.이벤트 정보 수정 2.이벤트 추가 3.이벤트 삭제 4. 뒤로 가기");
-        System.out.println("선택>"); int ch=scanner.nextInt();
-        if (ch == 1){
-            System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
-            System.out.println("이벤트 명 : "); String ename = scanner.next();
-            System.out.println("이벤트 이미지 " ); // BigDecimal eimg = scanner.nextBigDecimal();
-            String eimg = "";
-            try {
-                String str;
-                while (!(str= br.readLine()).equals("")){
-                    eimg += str+"\n";
+        System.out.println("============================이벤트 관리============================");
+            System.out.println("1.이벤트 정보 수정 2.이벤트 추가 3.이벤트 삭제 4. 뒤로 가기");
+            System.out.println("선택>"); int ch=scanner.nextInt();
+            if (ch == 1){
+                System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
+                System.out.println("이벤트 명 : "); String ename = scanner.next();
+                System.out.println("이벤트 이미지 " ); // BigDecimal eimg = scanner.nextBigDecimal();
+                String eimg = "";
+                try {
+                    String str;
+                    while (!(str= br.readLine()).equals("")){
+                        eimg += str+"\n";
+                    }
+
+                } catch (Exception e){
+                    System.out.println(e);
                 }
+                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
+                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
+                System.out.println(eimg);
+                EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
+                boolean result = AdminController.getInstance().eventChange(eventDto);
+                if( result = true ){
+                    System.out.println("수정완료");
 
-            } catch (Exception e){
-                System.out.println(e);
-            }
-            System.out.println("0.hp 1.stress 2.iq 3.strong");
-            System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
-            System.out.println("0.hp 1.stress 2.iq 3.strong");
-            System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
-            System.out.println(eimg);
-            EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
-            boolean result = AdminController.getInstance().eventChange(eventDto);
-            if( result = true ){
-                System.out.println("수정완료");
-
-            }else{
-                System.out.println("수정실패");
-            }
-            return;
-
-        }
-        else if (ch == 2) {
-            System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
-            System.out.println("이벤트 명 : "); String ename = scanner.next();
-            System.out.println("이벤트 이미지 " );
-            String eimg = "";
-            try {
-                String str;
-                while (!(str= br.readLine()).equals("")){
-                    eimg += str+"\n";
+                }else{
+                    System.out.println("수정실패");
                 }
+                return;
 
-            } catch (Exception e){
-                System.out.println(e);
             }
-            System.out.println("0.hp 1.stress 2.iq 3.strong");
-            System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
-            System.out.println("0.hp 1.stress 2.iq 3.strong");
-            System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
-            System.out.println(eimg);
-            EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
-            boolean result = AdminController.getInstance().eventInsert(eventDto);
-            if( result = true ){
-                System.out.println("추가완료");
+            else if (ch == 2) {
+                System.out.println("이벤트 번호 : "); int eno = scanner.nextInt();
+                System.out.println("이벤트 명 : "); String ename = scanner.next();
+                System.out.println("이벤트 이미지 " );
+                String eimg = "";
+                try {
+                    String str;
+                    while (!(str= br.readLine()).equals("")){
+                        eimg += str+"\n";
+                    }
 
-            }else{
-                System.out.println("추가실패");
-            }
-            return;
-        }
-        else if (ch == 3) {
-            System.out.println("삭제할 이벤트 번호 : "); int eno = scanner.nextInt();
-            EventDto eventDto = new EventDto(eno);
-            boolean result=AdminController.getInstance().eventDelete(eventDto);
-            if( result = true ){
-                System.out.println("삭제완료");
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
+                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
+                System.out.println(eimg);
+                EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
+                boolean result = AdminController.getInstance().eventInsert(eventDto);
+                if( result = true ){
+                    System.out.println("추가완료");
 
-            }else{
-                System.out.println("삭제실패");
+                }else{
+                    System.out.println("추가실패");
+                }
+                return;
             }
-            return;
-        }else if(ch==4){
-            return;
-        }
+            else if (ch == 3) {
+                System.out.println("삭제할 이벤트 번호 : "); int eno = scanner.nextInt();
+                EventDto eventDto = new EventDto(eno);
+                boolean result=AdminController.getInstance().eventDelete(eventDto);
+                if( result = true ){
+                    System.out.println("삭제완료");
+
+                }else{
+                    System.out.println("삭제실패");
+                }
+                return;
+            }else if(ch==4){
+                return;
+            }
         }
     }
+
 
     // 몬스터 관리=============================================
     public  static void MonsterManagement(){
@@ -253,7 +254,7 @@ public class AdminView {
                 System.out.print("지능:" + monsterlistDtos.get(i).getIq() + "\t");
                 System.out.println("힘:" + monsterlistDtos.get(i).getStrong() + "\t");
             }
-            System.out.println("===========몬스터리스트 관리==========");
+            System.out.println("============================몬스터리스트 관리============================");
             System.out.println("1. 몬스터 정보 수정 2. 몬스터 추가 3. 몬스터 삭제 4. 뒤로 가기 ");
             System.out.println("선택>");
             int ch = scanner.nextInt();
@@ -271,7 +272,7 @@ public class AdminView {
     }
     // 몬스터 수정=============================================
     public static void monsterUpdate(){
-        System.out.println("==============몬스터 수정================");
+        System.out.println("============================몬스터 수정============================");
         System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         System.out.println("지능:");         int iq =scanner.nextInt();
         System.out.println("힘:");         int strong =scanner.nextInt();
@@ -309,7 +310,7 @@ public class AdminView {
             monsterInsert();
         }
         for (int i=0;i<3;i++) {
-            System.out.printf("============== %d 번 몬스터 추가================",no+i);
+            System.out.printf("============================%d 번 몬스터 추가============================",no+i);
             System.out.println();
             System.out.println("지능:");
             int iq = scanner.nextInt();

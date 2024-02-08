@@ -60,9 +60,6 @@ public class MonsterController {
     }
     //==================================================
     // ===============================================
-    public boolean dead(int mno){
-        boolean result = MonsterDao.getInstance().dead(mno);
-        return result;
-    }
+
 }
 

@@ -18,12 +18,12 @@ public class SettingView {
     public boolean set(){
 
 
-            System.out.println("==================설정==================");
+            System.out.println("===============================설정===============================");
             System.out.println("1.비밀번호변경 2.회원탈퇴 3.로그아웃[main] 4.뒤로가기[플레이/설정]");
             int ch2 = scanner.nextInt();
 
             if (ch2==1){//비밀번호 변경
-                System.out.println("===========비밀번호 변경===========");
+                System.out.println("============================비밀번호변경============================");
                 System.out.print("비밀번호 : ");
                 String pw = scanner.next();
 
@@ -34,7 +34,7 @@ public class SettingView {
                 boolean result = MemberController.getInstance().checkPw(memberDto);
 
                 if(result){
-                    System.out.println("===========비밀번호 변경===========");
+                    System.out.println("============================비밀번호변경============================");
                     System.out.print("변경할 비밀번호 : ");
                     String rePw = scanner.next();
 
@@ -51,7 +51,7 @@ public class SettingView {
 
 
             } else if (ch2==2) {//회원탈퇴
-                System.out.println("===========회원탈퇴===========");
+                System.out.println("==============================회원탈퇴=============================");
                 System.out.print("비밀번호 : ");
                 String pw = scanner.next();
 

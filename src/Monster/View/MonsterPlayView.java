@@ -17,7 +17,7 @@ public class MonsterPlayView {
     public void run(){
         int mno= MemberController.getInstance().logMno;// 로그인 되어있는 회원번호
         Scanner scanner=new Scanner(System.in);
-        int mno= MemberController.getInstance().logMno;// 로그인 되어있는 회원번호
+
         while (true){
             boolean result = MonsterController.getInstance().monsterExistence(mno); //몬스터 보유 여부 메소드
             if(result){ // 몬스터가 없으면 알 생성으로 보내기
@@ -41,7 +41,22 @@ public class MonsterPlayView {
                 System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno); // 육성 기능 사진 가져오는 메소드
 
-                System.out.println(eImg);
+                if( eImg.equals("dead") ){
+
+                    System.out.println("                                                                         \n" +
+                                    "                                                                         \n" +
+                                    "   __        __       ___ ___       __     ___    __  __     __    _ __  \n" +
+                                    " /'_ `\\    /'__`\\   /' __` __`\\   /'__`\\  / __`\\ /\\ \\/\\ \\  /'__`\\ /\\`'__\\\n" +
+                                    "/\\ \\L\\ \\  /\\ \\L\\.\\_ /\\ \\/\\ \\/\\ \\ /\\  __/ /\\ \\L\\ \\\\ \\ \\_/ |/\\  __/ \\ \\ \\/ \n" +
+                                    "\\ \\____ \\ \\ \\__/.\\_\\\\ \\_\\ \\_\\ \\_\\\\ \\____\\\\ \\____/ \\ \\___/ \\ \\____\\ \\ \\_\\ \n" +
+                                    " \\/___L\\ \\ \\/__/\\/_/ \\/_/\\/_/\\/_/ \\/____/ \\/___/   \\/__/   \\/____/  \\/_/ \n" +
+                                    "   /\\____/                                                               \n" +
+                                    "   \\_/__/                                                                "
+                            );
+                    return;
+
+                }
+
                 try {
                     Thread.sleep(500);
                 }catch (Exception e){
