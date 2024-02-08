@@ -203,7 +203,7 @@ public class MonsterDao extends Dao {
                 if(count==1){
                     if( dead(mno) ){ return eimg="dead"; } ; // 사망 메소드
                     evolution(mno);// 진화 메소드
-                    System.out.println(" 이벤트 이미지");
+                    //System.out.println(" 이벤트 이미지");
                     return eimg;
                 }
             }
