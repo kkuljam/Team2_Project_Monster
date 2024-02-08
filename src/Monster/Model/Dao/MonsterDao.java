@@ -288,7 +288,7 @@ public class MonsterDao extends Dao {
     public boolean dead(int mno){
         try {
             String sql = "select mno , hp , stress from monster where mno = ?";
-            System.out.println(mno);
+            //System.out.println(mno);
             ps = conn.prepareStatement(sql);
             ps.setInt(1 , mno);
             rs = ps.executeQuery();
