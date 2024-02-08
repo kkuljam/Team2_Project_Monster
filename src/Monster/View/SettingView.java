@@ -66,7 +66,7 @@ public class SettingView {
                     boolean result = MemberController.getInstance().withdraw(memberDto);
                     if (result){
                         System.out.println("<알림> 탈퇴가 완료되었습니다.");
-                        set();
+                        return false;
                     }else {
                         System.out.println("<알림> 시스템오류 관리자에게 문의하세요");
                         set();

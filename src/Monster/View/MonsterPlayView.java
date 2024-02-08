@@ -13,8 +13,9 @@ public class MonsterPlayView {
     private static MonsterPlayView monsterView=new MonsterPlayView();
     public static MonsterPlayView getInstance(){return monsterView;}
 
-    int mno= MemberController.getInstance().logMno;// 로그인 되어있는 회원번호
+
     public void run(){
+        int mno= MemberController.getInstance().logMno;// 로그인 되어있는 회원번호
         Scanner scanner=new Scanner(System.in);
 
         while (true){
