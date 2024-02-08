@@ -158,4 +158,23 @@ public class MonsterView {
         System.out.println("<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
     }
 
+
+    public void dead(int mno){
+        Scanner scanner = new Scanner(System.in);
+        int ch = scanner.nextInt();
+
+        boolean result = MonsterController.getInstance().dead(mno);
+        if (result){
+            System.out.println("   __        __       ___ ___       __                ___    __  __     __    _ __  \n" +
+                    " /'_ `\\    /'__`\\   /' __` __`\\   /'__`\\             / __`\\ /\\ \\/\\ \\  /'__`\\ /\\`'__\\\n" +
+                    "/\\ \\L\\ \\  /\\ \\L\\.\\_ /\\ \\/\\ \\/\\ \\ /\\  __/            /\\ \\L\\ \\\\ \\ \\_/ |/\\  __/ \\ \\ \\/ \n" +
+                    "\\ \\____ \\ \\ \\__/.\\_\\\\ \\_\\ \\_\\ \\_\\\\ \\____\\           \\ \\____/ \\ \\___/ \\ \\____\\ \\ \\_\\ \n" +
+                    " \\/___L\\ \\ \\/__/\\/_/ \\/_/\\/_/\\/_/ \\/____/            \\/___/   \\/__/   \\/____/  \\/_/ \n" +
+                    "   /\\____/                                                                          \n" +
+                    "   \\_/__/                                                                           "+
+
+
+                    "1.MainView 로 가기"
+        );
+    }
 }
