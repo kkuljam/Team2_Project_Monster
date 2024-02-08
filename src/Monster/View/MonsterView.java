@@ -142,6 +142,8 @@ public class MonsterView {
 
     public void monsterGameImg (int mno) { //선택지를 뺀 몬스터 창
         // 몬스터 정보 출력 메소드로 닉네임, 진화단계, 게이지 불러오기
+        System.out.println("==============================================");
+        System.out.println("==============================================");
         MonsterDto monsterDto1 = MonsterController.getInstance().monsterPrint(mno);
         String monster =MonsterController.getInstance().monsterImg(monsterDto1.getLino());
         int hp = monsterDto1.getHp();           // 체력 수치
@@ -155,7 +157,17 @@ public class MonsterView {
 
         System.out.println("\n지능:" + monsterDto1.getIq() + " 힘:" + monsterDto1.getStrong()); // 지능 수치, 힘 수치 출력
         System.out.println(monster);                     // 몬스터 이미지
-        System.out.println("<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
+        System.out.println("\t\t\t\t<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
+        System.out.println("==============================================");
+        System.out.println("==============================================");
+        System.out.println(
+                "⠀⠀⠀⠀⠀⠀⠀  ⣤⣦⣴⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀  ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⢿⠛⠀⠀⠀\n" +
+                "⠀⠀⠀  ⣾⣾⣾⣾⣿⣿⣿⣿⣾⣾⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n" +
+                "⠀⠀⠀  ⡿⠿⡿⢿⣿⣿⡿⡿⠿⡿⢿⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀ ⠀⠀⠀ ⠀ ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠿⣿⢿⠛ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀ ⠀⠀⠀  ⠻⠛⠟⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+                );
     }
 
 
@@ -177,4 +189,4 @@ public class MonsterView {
                     "1.MainView 로 가기"
         );
     }
-}
+}}
