@@ -29,7 +29,7 @@ public class MonsterDao extends Dao {
             rs = ps.executeQuery(); //질의/검색(select) 결과를 rs 인터페이스에 대입한다
             //1. SQL 처리
             if (rs.next()) {  //rs.next() : 검색 결과 테이블에서 다음레코드 이동
-                System.out.println("몬스터 있음");
+                //System.out.println("몬스터 있음");
                 return false; //몬스터 있음
             }
         }catch (Exception e){

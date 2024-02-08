@@ -38,9 +38,9 @@ public class MonsterPlayView {
                 MemberController.getInstance().logOut();    //로그아웃
                 MainView.getInstance().mainView();          // 메인으로 보내기
             } else if (ch<= eventDtos.size()) {
-                System.out.println("진화");
+                //System.out.println("진화");
                 String eImg=MonsterController.getInstance().eventExecution(ch,mno); // 육성 기능 사진 가져오는 메소드
-
+                System.out.println(eImg);
                 if( eImg.equals("dead") ){
 
                     System.out.println("                                                                         \n" +
