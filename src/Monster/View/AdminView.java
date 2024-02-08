@@ -55,32 +55,32 @@ public class AdminView {
     //회원관리 화면
     public static void MemberManagement(){
         // 회원관리====================================================
-        System.out.println("============================회원 관리============================");
-        ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
-        for (int i=0;i<memberDtos.size();i++){
-            System.out.print(memberDtos.get(i).getMno()+"\t");
-            System.out.print(memberDtos.get(i).getMid()+"\t");
-            System.out.print(memberDtos.get(i).getMpw()+"\t");
-            System.out.print(memberDtos.get(i).getMphone()+"\t");
-            System.out.println(memberDtos.get(i).getMname());
-        }
-        System.out.println("회원번호입력:"); int mno=scanner.nextInt();
-
-        MemberDto admem = AdminController.getInstance().memprin(mno);
-
-
-        if(admem!=null) {
-
-            System.out.print(admem.getMno()+"\t");
-            System.out.print(admem.getMid()+"\t");
-            System.out.print(admem.getMpw()+"\t");
-            System.out.print(admem.getMphone()+"\t");
-            System.out.println(admem.getMname());
-
-
-
-            // 회원 정보 수정/삭제 선택
+        while (true){
             System.out.println("============================회원 관리============================");
+            ArrayList<MemberDto> memberDtos = AdminController.getInstance().memberPrint(new MemberDto());
+            for (int i=0;i<memberDtos.size();i++){
+                System.out.print(memberDtos.get(i).getMno()+"\t");
+                System.out.print(memberDtos.get(i).getMid()+"\t");
+                System.out.print(memberDtos.get(i).getMpw()+"\t");
+                System.out.print(memberDtos.get(i).getMphone()+"\t");
+                System.out.println(memberDtos.get(i).getMname());
+            }
+            System.out.println("회원번호입력:"); int mno=scanner.nextInt();
+
+            MemberDto admem = AdminController.getInstance().memprin(mno);
+
+
+            if(admem!=null) {
+
+                System.out.print(admem.getMno()+"\t");
+                System.out.print(admem.getMid()+"\t");
+                System.out.print(admem.getMpw()+"\t");
+                System.out.print(admem.getMphone()+"\t");
+                System.out.println(admem.getMname());
+
+
+                // 회원 정보 수정/삭제 선택
+                System.out.println("============================회원 관리============================");
                 System.out.println("1. 회원 정보 수정 2. 회원 정보 삭제 3.뒤로 가기");
                 System.out.println("선택>");
                 int ch = scanner.nextInt();
@@ -100,12 +100,7 @@ public class AdminView {
 
 
                     boolean result = AdminController.getInstance().memberChange(memberDto);
-                    if (result = true) {
-                        System.out.println("수정완료");
 
-                    } else {
-                        System.out.println("수정실패");
-                    }
                     return;
                 }
                 // 정보 삭제=====================================================
@@ -150,7 +145,7 @@ public class AdminView {
             }
         }
 
-   }
+    }
 
     // 기능 관리==============================================
     public static void FuntionManagement(){
@@ -164,7 +159,7 @@ public class AdminView {
                 System.out.println("하락 스탯:"+eventDtos.get(i).getStatDown()+"\t");
             }
 
-        System.out.println("============================이벤트 관리============================");
+            System.out.println("============================이벤트 관리============================");
             System.out.println("1.이벤트 정보 수정 2.이벤트 추가 3.이벤트 삭제 4. 뒤로 가기");
             System.out.println("선택>"); int ch=scanner.nextInt();
             if (ch == 1){
@@ -181,19 +176,14 @@ public class AdminView {
                 } catch (Exception e){
                     System.out.println(e);
                 }
-                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("1.hp 2.stress 3.iq 4.strong");
                 System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
-                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("1.hp 2.stress 3.iq 4.strong");
                 System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
                 System.out.println(eimg);
                 EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
                 boolean result = AdminController.getInstance().eventChange(eventDto);
-                if( result = true ){
-                    System.out.println("수정완료");
 
-                }else{
-                    System.out.println("수정실패");
-                }
                 return;
 
             }
@@ -211,38 +201,27 @@ public class AdminView {
                 } catch (Exception e){
                     System.out.println(e);
                 }
-                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("1.hp 2.stress 3.iq 4.strong");
                 System.out.println("올라갈 스탯번호 : "); int statup = scanner.nextInt();
-                System.out.println("0.hp 1.stress 2.iq 3.strong");
+                System.out.println("1.hp 2.stress 3.iq 4.strong");
                 System.out.println("내려갈 스탯번호 : "); int statdown = scanner.nextInt();
                 System.out.println(eimg);
                 EventDto eventDto = new EventDto(eno , ename , eimg , statup , statdown );
                 boolean result = AdminController.getInstance().eventInsert(eventDto);
-                if( result = true ){
-                    System.out.println("추가완료");
 
-                }else{
-                    System.out.println("추가실패");
-                }
                 return;
             }
             else if (ch == 3) {
                 System.out.println("삭제할 이벤트 번호 : "); int eno = scanner.nextInt();
                 EventDto eventDto = new EventDto(eno);
                 boolean result=AdminController.getInstance().eventDelete(eventDto);
-                if( result = true ){
-                    System.out.println("삭제완료");
 
-                }else{
-                    System.out.println("삭제실패");
-                }
                 return;
             }else if(ch==4){
                 return;
             }
         }
     }
-
 
     // 몬스터 관리=============================================
     public  static void MonsterManagement(){
@@ -294,11 +273,6 @@ public class AdminView {
 
         boolean result= AdminController.getInstance().monsterUpdate(monsterListDto);
 
-        if(result=true){
-            System.out.println("수정 성공");
-        }else{
-            System.out.println("수정 실패");
-        }
     };
 
     // 몬스터 추가=============================================
@@ -337,15 +311,11 @@ public class AdminView {
 
     // 몬스터 삭제=============================================
     public static void monsterDelete(){
-        System.out.println("==============몬스터 삭제================");
+        System.out.println("============================몬스터 수정============================");
         System.out.println("관리할 몬스터 번호:"); int no=scanner.nextInt();
         MonsterListDto monsterListDto=new MonsterListDto(no);
         boolean result=AdminController.getInstance().monsterDelete(monsterListDto);
-        if(result=true){
-            System.out.println("삭제성공");
-        }else{
-            System.out.println("삭제실패");
-        }
+
     }
 
 

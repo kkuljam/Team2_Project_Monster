@@ -50,7 +50,6 @@ public class MemberController {
     //로그아웃
     public void logOut(){
         logMno = 0;
-        System.out.println(logMno);
     }
 
     //비밀번호확인

@@ -103,7 +103,7 @@ public class AdminDao extends Dao {
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("이미 존재하는 아이디입니다.");
         }
         return false;
     }

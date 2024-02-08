@@ -42,7 +42,6 @@ public class MonsterDao extends Dao {
     public boolean monsterRandom(String nM, int mno){
         try {
             String sql="select stepno from monsterlist where stepno=1";
-            //String sql="select count(*) from monsterlist where stepno=1";
 
             ps=conn.prepareStatement(sql);
             rs= ps.executeQuery();
@@ -50,7 +49,6 @@ public class MonsterDao extends Dao {
             while (rs.next()){// stepno의 1번의 개수만큼 a 증가
                 a++;
             }
-            System.out.println(a+"카운트 값");
             Random random=new Random(); // 난수 객체 생성
             int mRandom=random.nextInt(a);// 1부터 몬스터 진화 1단계 개수까지 랜덤 // 번호 랜덤 수정 필요함
             if(mRandom!=0){
@@ -163,13 +161,13 @@ public class MonsterDao extends Dao {
                 if(up==2){
                     upR*=-1;
                 }
-                System.out.println("올라갈 스탯 "+upStat+"숫자 "+upR);
+               // System.out.println("올라갈 스탯 "+upStat+"숫자 "+upR);
                 //4. 두번째 이름 -난수 / but 만약 2번이면 부호 반대로
                 int downR=((int) (Math.random() * 9) + 3)*-1;
                 if(down==2){
                     downR*=-1;
                 }
-                System.out.println("내려갈 스탯 "+downStat+"숫자 "+downR);
+               // System.out.println("내려갈 스탯 "+downStat+"숫자 "+downR);
 
                 //원본 숫자 불러와
                 sql="select "+upStat+", "+downStat+" from monster where mno=?";
@@ -181,9 +179,13 @@ public class MonsterDao extends Dao {
                     downR+=rs.getInt(downStat);
                     if(upR>100){
                         upR=100;
+                    }else if(upR<0){
+                        upR=0;
                     }
                     if(downR<0){
                         downR=0;
+                    }else if (downR>100){
+                        downR=100;
                     }
                 }
                 //System.out.println("원본숫자 불러와서 더했음");
@@ -250,16 +252,22 @@ public class MonsterDao extends Dao {
                             int count = ps.executeUpdate();
 
                             if (count == 1) {
-                                System.out.println("                          ___                __                               __     \n" +
-                                        "                         /\\_ \\              /\\ \\__    __                     /\\ \\    \n" +
-                                        "   __    __  __    ___   \\//\\ \\     __  __  \\ \\ ,_\\  /\\_\\     ___     ___    \\ \\ \\   \n" +
-                                        " /'__`\\ /\\ \\/\\ \\  / __`\\   \\ \\ \\   /\\ \\/\\ \\  \\ \\ \\/  \\/\\ \\   / __`\\ /' _ `\\   \\ \\ \\  \n" +
-                                        "/\\  __/ \\ \\ \\_/ |/\\ \\L\\ \\   \\_\\ \\_ \\ \\ \\_\\ \\  \\ \\ \\_  \\ \\ \\ /\\ \\L\\ \\/\\ \\/\\ \\   \\ \\_\\ \n" +
-                                        "\\ \\____\\ \\ \\___/ \\ \\____/   /\\____\\ \\ \\____/   \\ \\__\\  \\ \\_\\\\ \\____/\\ \\_\\ \\_\\   \\/\\_\\\n" +
-                                        " \\/____/  \\/__/   \\/___/    \\/____/  \\/___/     \\/__/   \\/_/ \\/___/  \\/_/\\/_/    \\/_/\n" +
-                                        "                                                                                     \n" +
-                                        "                                                                                     ");
-                                return 1;
+                                try {
+                                    System.out.println("                          ___                __                               __     \n" +
+                                            "                         /\\_ \\              /\\ \\__    __                     /\\ \\    \n" +
+                                            "   __    __  __    ___   \\//\\ \\     __  __  \\ \\ ,_\\  /\\_\\     ___     ___    \\ \\ \\   \n" +
+                                            " /'__`\\ /\\ \\/\\ \\  / __`\\   \\ \\ \\   /\\ \\/\\ \\  \\ \\ \\/  \\/\\ \\   / __`\\ /' _ `\\   \\ \\ \\  \n" +
+                                            "/\\  __/ \\ \\ \\_/ |/\\ \\L\\ \\   \\_\\ \\_ \\ \\ \\_\\ \\  \\ \\ \\_  \\ \\ \\ /\\ \\L\\ \\/\\ \\/\\ \\   \\ \\_\\ \n" +
+                                            "\\ \\____\\ \\ \\___/ \\ \\____/   /\\____\\ \\ \\____/   \\ \\__\\  \\ \\_\\\\ \\____/\\ \\_\\ \\_\\   \\/\\_\\\n" +
+                                            " \\/____/  \\/__/   \\/___/    \\/____/  \\/___/     \\/__/   \\/_/ \\/___/  \\/_/\\/_/    \\/_/\n" +
+                                            "                                                                                     \n" +
+                                            "                                                                                     ");
+                                    Thread.sleep(1000);
+                                    return 1;
+                                }catch (Exception e){
+                                    System.out.println(e);
+                                }
+
                             }
 
                         }

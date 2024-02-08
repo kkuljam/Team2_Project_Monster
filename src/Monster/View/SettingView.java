@@ -41,7 +41,6 @@ public class SettingView {
                     MemberDto memberDto1 = new MemberDto(rePw);
 
                     MemberController.getInstance().rePw(memberDto1);
-                    set();
 
                 }else {
                     System.out.println("<알림> 잘못된 비밀번호 입니다.");

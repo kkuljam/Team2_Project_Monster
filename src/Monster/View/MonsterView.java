@@ -57,7 +57,7 @@ public class MonsterView {
                 System.out.println("<안내>몬스터의 이름을 정해주세요");
             }
         }
-        System.out.println("\t" + nickName);
+        System.out.println("\t\t\t몬스터 이름 :" + nickName);
         System.out.println("알을 깨워주세요. \n*enter 5번을 눌러주세요*");
         scanner.nextLine();
         System.out.print("1");
@@ -74,7 +74,7 @@ public class MonsterView {
         boolean go = MonsterController.getInstance().monsterRandom(nickName, mno);
         //System.out.println("몬스터 이름"+nickName);
         if (go) {
-            System.out.println(nickName + "이(가) 깨어나고 있습니다.");
+            System.out.println("\n"+nickName + "이(가) 깨어나고 있습니다.");
             try {
                 System.out.print("\n" +
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠠⠄⠠⠠⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
@@ -155,16 +155,16 @@ public class MonsterView {
 
         System.out.println("\n지능:" + monsterDto1.getIq() + " 힘:" + monsterDto1.getStrong()); // 지능 수치, 힘 수치 출력
         System.out.println(monster);                     // 몬스터 이미지
-        System.out.println("\t\t\t\t<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
-        System.out.println("==============================================");
-        System.out.println("==============================================");
+        System.out.println("\t\t\t\t\t\t<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
+        System.out.println("================================================================");
+        System.out.println("================================================================");
         System.out.println(
-                "⠀⠀⠀⠀⠀⠀⠀  ⣤⣦⣴⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀\n" +
-                "⠀⠀⠀⠀⠀⠀⠀  ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⢿⠛⠀⠀⠀\n" +
-                "⠀⠀⠀  ⣾⣾⣾⣾⣿⣿⣿⣿⣾⣾⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n" +
-                "⠀⠀⠀  ⡿⠿⡿⢿⣿⣿⡿⡿⠿⡿⢿⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀ ⠀⠀⠀ ⠀ ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠿⣿⢿⠛ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                "⠀⠀⠀ ⠀⠀⠀  ⠻⠛⠟⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+                "\t\t⠀⠀⠀⠀⠀⠀⠀  ⣤⣦⣴⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀\n" +
+                "\t\t⠀⠀⠀⠀⠀⠀⠀  ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⢿⠛⠀⠀⠀\n" +
+                "\t\t⠀⠀⠀  ⣾⣾⣾⣾⣿⣿⣿⣿⣾⣾⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n" +
+                "\t\t⠀⠀⠀  ⡿⠿⡿⢿⣿⣿⡿⡿⠿⡿⢿⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "\t\t⠀⠀ ⠀⠀⠀ ⠀ ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠿⣿⢿⠛ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "\t\t⠀⠀⠀ ⠀⠀⠀  ⠻⠛⠟⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
                 );
     }
 
