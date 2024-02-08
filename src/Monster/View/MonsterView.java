@@ -155,28 +155,36 @@ public class MonsterView {
 
         System.out.println("\n지능:" + monsterDto1.getIq() + " 힘:" + monsterDto1.getStrong()); // 지능 수치, 힘 수치 출력
         System.out.println(monster);                     // 몬스터 이미지
-        System.out.println("<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
+        System.out.println("\t\t\t\t<<" + monsterDto1.getNickname() + ">>");  // 몬스터 이름
+        System.out.println("==============================================");
+        System.out.println("==============================================");
+        System.out.println(
+                "⠀⠀⠀⠀⠀⠀⠀  ⣤⣦⣴⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀\n" +
+                "⠀⠀⠀⠀⠀⠀⠀  ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⢿⠛⠀⠀⠀\n" +
+                "⠀⠀⠀  ⣾⣾⣾⣾⣿⣿⣿⣿⣾⣾⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n" +
+                "⠀⠀⠀  ⡿⠿⡿⢿⣿⣿⡿⡿⠿⡿⢿⠀⠀⠀⠀⠀⠀ ⣰⣾⣿⣶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀ ⠀⠀⠀ ⠀ ⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠿⣿⢿⠛ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                "⠀⠀⠀ ⠀⠀⠀  ⠻⠛⠟⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+                );
     }
 
 
-    public void dead(int mno) {
+    public void dead(int mno){
         Scanner scanner = new Scanner(System.in);
         int ch = scanner.nextInt();
 
         boolean result = MonsterController.getInstance().dead(mno);
-        if (result) {
+        if (result){
             System.out.println("   __        __       ___ ___       __                ___    __  __     __    _ __  \n" +
                     " /'_ `\\    /'__`\\   /' __` __`\\   /'__`\\             / __`\\ /\\ \\/\\ \\  /'__`\\ /\\`'__\\\n" +
                     "/\\ \\L\\ \\  /\\ \\L\\.\\_ /\\ \\/\\ \\/\\ \\ /\\  __/            /\\ \\L\\ \\\\ \\ \\_/ |/\\  __/ \\ \\ \\/ \n" +
                     "\\ \\____ \\ \\ \\__/.\\_\\\\ \\_\\ \\_\\ \\_\\\\ \\____\\           \\ \\____/ \\ \\___/ \\ \\____\\ \\ \\_\\ \n" +
                     " \\/___L\\ \\ \\/__/\\/_/ \\/_/\\/_/\\/_/ \\/____/            \\/___/   \\/__/   \\/____/  \\/_/ \n" +
                     "   /\\____/                                                                          \n" +
-                    "   \\_/__/                                                                           " +
+                    "   \\_/__/                                                                           "+
 
 
                     "1.MainView 로 가기"
-            );
-        }
+        );
     }
-}
 }
